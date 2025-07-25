@@ -17,6 +17,7 @@
 			<a href="/coomarket//main.jeong">로고들어갈자리</a>
 		</h1>
 		<div id="headerInner">
+		
 		</div>
 	</header>
 </body>
