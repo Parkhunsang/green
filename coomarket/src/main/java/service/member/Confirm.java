@@ -15,9 +15,21 @@ public class Confirm implements CommandProcess {
 		MemberDao md = MemberDao.getInstance();
 		Member member = md.select(id);
 		String msg = "";
-		if(member==null) msg="사용가능한 아이디입니다";
-		else msg="다른아이디를상ㅇㅎ사ㅔ요";
+		int result = 0;
+		if(id!=null && id.length() >= 6 && id.length() <= 10) { //아이디 글자수 제한
+			if(member==null) { //아이디 중복체크
+				result = 1;
+				msg = "사용가능한 아이디입니다";
+			}else {
+				result = 0;
+				msg="사용불가능한 아이디입니다";
+			}
+		} else {
+			result = 0;
+			 msg="사용불가능한 아이디입니다";
+		}
 		request.setAttribute("msg", msg);
+		request.setAttribute("result", result);
 		return "/member/confirm";
 	}
 

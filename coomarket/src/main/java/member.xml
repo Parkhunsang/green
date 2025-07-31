@@ -5,4 +5,5 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where id=#{id}
 	</select>
+	
 </mapper>

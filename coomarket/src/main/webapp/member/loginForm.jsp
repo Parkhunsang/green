@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	@import url("/coomarket/css/common.css");
 	@import url("/coomarket/css/member/account.css");
 </style>
 </head>
 <body>
-<section id="loginForm">
+<section class="accountsForm">
     <h1>로그인</h1>
     <div id="loginForm_inner">
         <form action="login.jeong">
