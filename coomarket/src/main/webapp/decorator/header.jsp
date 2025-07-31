@@ -6,7 +6,7 @@
 <c:set var="id" value='${sessionScope.id}'></c:set>
 <head>
 <meta charset="UTF-8">
-<title>피식</title>
+<title>Coo-Market</title>
 <script type="text/javascript">
 
 </script>

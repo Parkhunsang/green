@@ -1,7 +1,11 @@
-﻿CREATE TABLE `Like` (
-	`icm_no`	number(10)	NOT NULL,
-	`Id[key]`	varchar(20)	NOT NULL,
-	`np_no`	number(20)	NOT NULL
+﻿alter session set "_ORACLE_SCRIPT"=true;
+create user coomarket identified by 0000;
+grant dba to project;
+
+CREATE TABLE Like (
+	icm_no	number(10)	NOT NULL,
+	id	varchar(20)	NOT NULL,
+	np_no	number(20)	NOT NULL
 );
 
 CREATE TABLE `NewProduct` (
@@ -67,18 +71,6 @@ CREATE TABLE `BuyList` (
 	`np_no`	number(20)	NOT NULL
 );
 
-CREATE TABLE `Member` (
-	`Id[key]`	varchar(20)	NOT NULL,
-	`password`	varchar(20)	NULL,
-	`name`	varchar2(20)	NULL,
-	`address`	varchar2(20)	NULL,
-	`tel`	number(20)	NULL,
-	`email`	varchar2(30)	NULL,
-	`reg_date`	date	NULL,
-	`del`	char(1)	NULL,
-	`is_admin`	char(1)	NULL,
-	`member_type`	char(1)	NULL
-);
 
 -- 회원 테이블 (일반 + 사업자 구분)
 CREATE TABLE Member (
