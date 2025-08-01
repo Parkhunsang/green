@@ -8,7 +8,7 @@
 </head>
 <body>
 	<footer>
-		
+		사이트정보등등
 	</footer>
 
 </body>

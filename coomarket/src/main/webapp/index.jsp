@@ -8,7 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="display/main.jeong"
+	location.href="/coomarket/display/main.jeong"
 </script>
 </body>
 </html>

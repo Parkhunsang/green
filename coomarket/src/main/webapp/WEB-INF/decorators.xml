@@ -2,6 +2,7 @@
 <decorators defaultdir="/decorator">
 	<decorator name="decorator" page="view.jsp">
 		 <pattern>/member/*</pattern> 
+		 <pattern>/display/*</pattern> 
 	</decorator>
 	<decorator name="decorator_admin" page="view_admin.jsp">
 		<pattern>/admin/*</pattern>
