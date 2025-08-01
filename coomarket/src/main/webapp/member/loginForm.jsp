@@ -25,7 +25,7 @@
             </div>
             <input type="submit" id="loginSubmit" value="로그인">
         </form>
-        <a href="#" id="loginForm_joinLink">아직 계정이 없으세요???? >><span>회원가입</span></a>
+        <a href="joinForm.jeong" id="loginForm_joinLink">아직 계정이 없으세요???? >><span>회원가입</span></a>
     </div>
 </section>
 </body>

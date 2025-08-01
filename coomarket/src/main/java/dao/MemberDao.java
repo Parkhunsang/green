@@ -31,4 +31,7 @@ public class MemberDao {
 		
 		return (Member) session.selectOne("memberns.select",id);
 	}
+	public int insert(Member member) {
+		return session.insert("memberns.insert",member);
+	}
 }

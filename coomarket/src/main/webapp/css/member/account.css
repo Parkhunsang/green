@@ -13,6 +13,42 @@
     color:var(--main-color);
 }
 
+.joinForm_inputBox,
+.joinForm_inputBox_pw{
+    width:100%;
+    height:60px;
+    border:solid 1px var(--basic-border);
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.joinForm_inputBox{
+    border-radius:8px;
+}
+#jFiB_pw{
+    border-radius:8px 8px 0px 0px;
+}
+#jFiB_pwChk{
+    border-radius:0px 0px 8px 8px;
+}
+.joinForm_label{
+    font-size:12px;
+    text-align:left;
+}
+.joinForm_input{
+    height:25px;
+    padding:0px;
+    outline:none;
+}
+.joinForm_chkMsg{
+	line-height:14px;
+	font-size:12px;
+    text-align:left;
+    text-indent:25px;
+    color:var(--warning-text);
+}
+
 /* 회원가입폼 시작 */
 
 /* 회원가입폼 끝 */

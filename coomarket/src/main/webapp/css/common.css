@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 :root {
-  --main-color: brown;
+  --main-color: #ee9a2c;
   --default-text:#333333;
+  --warning-text:#d42828;
+  --basic-border:#999999;
 }

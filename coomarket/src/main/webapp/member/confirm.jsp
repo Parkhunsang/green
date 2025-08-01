@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<span id="result_idChk">${result}</span>
-<span id="msg">${msg}</span>
+<div id="msg">${msg}</div>
 </body>
 </html>
