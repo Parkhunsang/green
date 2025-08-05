@@ -18,7 +18,7 @@
 		<div id="headderInner">
 			<div id="headerInner_top">
 				<h1 id="headerLogo">
-					<a href="/coomarket/main.jeong">Coo</a>
+					<a href="/coomarket/display/main.jeong">Coo-M</a>
 				</h1>
 				<!-- <div id="headerInner_menuBox"> -->
 					<nav id="mainMenu">
