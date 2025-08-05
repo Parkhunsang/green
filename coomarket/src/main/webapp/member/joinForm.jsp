@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-	@import url("/coomarket/css/common.css");
 	@import url("/coomarket/css/member/account.css");
 </style>
 

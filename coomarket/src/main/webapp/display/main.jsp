@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/coomarket/member/loginForm.jeong">로그인</a>
+main
 </body>
 </html>
