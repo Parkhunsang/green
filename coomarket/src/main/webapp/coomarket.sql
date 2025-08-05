@@ -74,19 +74,20 @@ CREATE TABLE `BuyList` (
 
 -- 회원 테이블 (일반 + 사업자 구분)
 CREATE TABLE Member (
-    id            VARCHAR2(10) PRIMARY KEY,
-    password      VARCHAR2(255) NOT NULL, -- 비밀번호 암호화를 위해 20-> 255로 확장
-    name          VARCHAR2(20) NOT NULL,
-    address       VARCHAR2(230),
-    tel           VARCHAR2(20),
-    email         VARCHAR2(50),
+    id            VARCHAR(10) PRIMARY KEY NOT NULL,
+    password      VARCHAR(255) NOT NULL, -- 비밀번호 암호화를 위해 20-> 255로 확장
+    name          VARCHAR(20) NOT NULL,
+    address       VARCHAR(230),
+    tel           VARCHAR(20),
+    email         VARCHAR(50),
     reg_date      DATE DEFAULT CURRENT_DATE,
     del           CHAR(1) DEFAULT 'N',
     is_admin      CHAR(1) DEFAULT 'N',
     member_type   CHAR(1) NOT NULL  -- 'N'=일반회원, 'B'=사업자회원
 );
-
+alter table Member modify(id varchar(20) not null);
 insert into Member(id, password, name, address, tel, email, member_type) values('test00', '0', 'name', 'juso', '010-0000-0000', 'abcd@efg.com', 'N');
+delete Member where id='test00';
 select * from Member;
 drop table Member;
 

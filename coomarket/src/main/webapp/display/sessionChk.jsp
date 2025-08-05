@@ -4,6 +4,6 @@
 <c:set var="id" value="${sessionScope.id }"></c:set>
 <c:if test="${empty id}">
 	<script type="text/javascript">
-		location.href="/coomarket/display/login.jeong"
+		location.href="/coomarket/display/main.jeong"
 	</script>
 </c:if>

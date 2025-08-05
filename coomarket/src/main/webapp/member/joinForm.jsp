@@ -30,7 +30,7 @@
 <body>
 <section class="accountsForm">
 	<h2 class="accountsForm_title">회원가입</h2>
-	<form action="join.jeong" name="frm" onsubmit="return chk()">
+	<form action="/coomarket/member/join.jeong" name="frm" onsubmit="return chk()">
 		<fieldset>
 			<div class="joinForm_inputBox">
 				<label for="userId_individual" class="joinForm_label">
@@ -85,7 +85,7 @@
 			</div>
 		</fieldset>
 	</form>
-	<button onclick="location.href='loginForm.jeong'">로그인</button>
+	<button onclick="location.href='/coomarket/member/loginForm.jeong'">로그인</button>
 </section>
 </body>
 </html>

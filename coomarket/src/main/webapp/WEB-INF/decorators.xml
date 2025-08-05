@@ -10,6 +10,12 @@
 
 	<excludes>
 		<pattern>/member/confirm.*</pattern>
+		<pattern>/member/login.*</pattern>
+		<pattern>/member/loginForm.*</pattern>
+		<pattern>/member/join.*</pattern>
+		<pattern>/member/joinForm.*</pattern>
+		<pattern>/member/login.*</pattern>
+		<pattern>/member/logout.*</pattern>
 	</excludes>
 	
 </decorators>

@@ -11,13 +11,14 @@
 <script type="text/javascript">
 
 </script>
+<c:set var="cID" value="${sessionScope.id}"></c:set>
 </head>
 <body>
 	<header>
 		<div id="headderInner">
 			<div id="headerInner_top">
 				<h1 id="headerLogo">
-					<a href="/coomarket//main.jeong">Coo</a>
+					<a href="/coomarket/main.jeong">Coo</a>
 				</h1>
 				<!-- <div id="headerInner_menuBox"> -->
 					<nav id="mainMenu">
@@ -28,11 +29,18 @@
 							<li>우리동네</li>
 						</ul>
 					</nav>
-				<!-- </div> -->
 				<div id="header_userBox">
 					<ul id="header_userBox_list">
-						<li><a href="loginForm.jeong">로그인</a></li>
-						<li><a href="joinForm.jeong">회원가입</a></li>
+						<c:if test="${empty cID}">
+							<li><a href="/coomarket/member/loginForm.jeong">로그인</a></li>
+							<li><a href="/coomarket/member/joinForm.jeong">회원가입</a></li>
+						</c:if>
+						<c:if test="${not empty cID}">
+							<li><a href="/coomarket/member/mypage.jeong">마이페이지</a></li>
+							<li><a href="/coomarket/member/cartlist.jeong">장바구니</a></li>
+							<li><a href="/coomarket/member/logout.jeong">로그아웃</a></li>
+						</c:if>
+						
 						<li><a href="#">고객센터</a></li>
 					</ul>
 				</div>
