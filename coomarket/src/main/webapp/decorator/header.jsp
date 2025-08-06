@@ -33,7 +33,7 @@
 					<ul id="header_userBox_list">
 						<c:if test="${empty cID}">
 							<li><a href="/coomarket/member/loginForm.jeong">로그인</a></li>
-							<li><a href="/coomarket/member/joinForm.jeong">회원가입</a></li>
+							<li><a href="/coomarket/member/joinType.jeong">회원가입</a></li>
 						</c:if>
 						<c:if test="${not empty cID}">
 							<li><a href="/coomarket/member/mypage.jeong">마이페이지</a></li>

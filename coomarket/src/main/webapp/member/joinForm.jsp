@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
 		
 	}
 	function chk(){
-		if(!frm.userId_individual.value || frm.userPw_individual.value != frm.userPw_individual_chk.value) return false;
+		if(frm.userPw_individual.value != frm.userPw_individual_chk.value) return false;
 	}
 
 </script>
@@ -32,6 +33,15 @@
 	<h2 class="accountsForm_title">회원가입</h2>
 	<form action="/coomarket/member/join.jeong" name="frm" onsubmit="return chk()">
 		<fieldset>
+			<c:if test="${result==2}">
+			<div class="joinForm_inputBox">
+				<label for="userId_individual" class="joinForm_label">
+					<span id="userId_focusMsg">사업자 번호</span>
+				</label>
+				<input type="text" name="userId_individual" id="userId_individual" class="joinForm_input" minlength="6" maxlength="10" required="required" onkeyup="dupChk()">
+			</div>
+			<p class="joinForm_chkMsg" id="userId_dupChk_Message"></p>
+			</c:if>
 			<div class="joinForm_inputBox">
 				<label for="userId_individual" class="joinForm_label">
 					<span id="userId_focusMsg">ID</span>
