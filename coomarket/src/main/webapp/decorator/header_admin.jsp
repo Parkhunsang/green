@@ -4,14 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+@import url("/psick/css/admin/admin.css");
+</style>
 
-<title>Coo-Market</title>
 </head>
 <body>
-	<footer>
-		사이트정보등등
+	<header>
 
-	</footer>
-
+	</header>
 </body>
 </html>

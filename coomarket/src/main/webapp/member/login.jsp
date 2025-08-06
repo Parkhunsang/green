@@ -19,7 +19,11 @@
 <c:if test="${result > 0}">
 	<script type="text/javascript">
 		alert("로그인 성공");
+
 		location.href="/member/main.jeong";
+
+		location.href="/coomarket/display/main.jeong";
+
 	</script>
 </c:if>
 

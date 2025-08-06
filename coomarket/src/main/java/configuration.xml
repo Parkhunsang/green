@@ -5,9 +5,13 @@
 	<properties resource="db.properties" />
 	<typeAliases>
 		<typeAlias alias="member" type="model.Member" />
+<<<<<<< HEAD
 		<typeAlias alias="board" type="model.Board" />
 		<typeAlias alias="newProduct" type="model.NewProduct" />
 		<typeAlias alias="category" type="model.Category" />
+=======
+
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -22,9 +26,12 @@
 	</environments>
 	<mappers>
 		<mapper resource="member.xml" />
+<<<<<<< HEAD
 		<mapper resource="board.xml" />
 		<mapper resource="newProduct.xml" />
 		<mapper resource="category.xml" />
+=======
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 
 
 	</mappers>

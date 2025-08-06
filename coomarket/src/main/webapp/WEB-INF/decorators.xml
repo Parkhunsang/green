@@ -2,7 +2,11 @@
 <decorators defaultdir="/decorator">
 	<decorator name="decorator" page="view.jsp">
 		 <pattern>/member/*</pattern> 
+
 		 <pattern>/display/*</pattern>
+
+		 <pattern>/display/*</pattern> 
+
 	</decorator>
 	<decorator name="decorator_admin" page="view_admin.jsp">
 		<pattern>/admin/*</pattern>
@@ -10,6 +14,12 @@
 
 	<excludes>
 		<pattern>/member/confirm.*</pattern>
+		<pattern>/member/login.*</pattern>
+		<pattern>/member/loginForm.*</pattern>
+		<pattern>/member/join.*</pattern>
+		<pattern>/member/joinForm.*</pattern>
+		<pattern>/member/login.*</pattern>
+		<pattern>/member/logout.*</pattern>
 	</excludes>
 	
 </decorators>

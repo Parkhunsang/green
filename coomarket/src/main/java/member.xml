@@ -3,7 +3,24 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
 	<select id="select" parameterType="string" resultType="member">
+<<<<<<< HEAD
 		select * from member where id=#{id}
 	</select>
 	
+=======
+		select * from member where id=#{id, jdbcType=VARCHAR}
+	</select>
+	<insert id="insert" parameterType="member">
+		insert into Member(id,password,name,address,tel,email,member_type)
+					values(
+						#{id, jdbcType=VARCHAR},
+						#{password, jdbcType=VARCHAR},
+						#{name, jdbcType=VARCHAR},
+						#{address, jdbcType=VARCHAR},
+						#{tel, jdbcType=VARCHAR},
+						#{email, jdbcType=VARCHAR},
+						'N'
+					)
+	</insert>
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 </mapper>

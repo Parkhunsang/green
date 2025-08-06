@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿-- 회원 테이블
 CREATE TABLE Member (
     id            VARCHAR2(20) PRIMARY KEY,
@@ -25,6 +26,87 @@ CREATE TABLE BusinessMember (
     is_admin       CHAR(1)
 );
 select * from NewProduct;
+=======
+﻿-- Member (공통 정보)
+CREATE TABLE Member (
+    id            VARCHAR2(20) PRIMARY KEY,
+    password      VARCHAR2(255),
+    email         VARCHAR2(100) UNIQUE NOT NULL,
+    member_type   CHAR(1) NOT NULL CHECK (member_type IN ('i', 'b')), --일반 i 비즈니스 b
+    status		  CHAR(1) DEFAULT 'A' CHECK (status IN ('A', 'D', 'S')) -- 활성화 A 삭제대기 D 계정정지 S
+);
+alter table Member add reg_date date default sysdate;
+
+-- 개인정보 테이블 (PII)
+CREATE TABLE MemberPrivate (
+    id        		 VARCHAR2(20) PRIMARY KEY,
+    name          VARCHAR2(50),
+    address   		 VARCHAR2(200),
+    address_detail   VARCHAR2(200),
+    tel       		 VARCHAR2(20) UNIQUE,
+    member_pic       VARCHAR2(255),
+    FOREIGN KEY (id) REFERENCES Member(id) ON DELETE CASCADE
+);
+
+-- 배송지 주소
+CREATE TABLE DeliveryAddress (
+    address_id   NUMBER PRIMARY KEY,
+    member_id    VARCHAR2(20),
+    receiver     VARCHAR2(50),
+    phone        VARCHAR2(20),
+    address      VARCHAR2(255),
+    is_default   CHAR(1) CHECK (is_default IN ('Y', 'N')),
+    created_at DATE DEFAULT SYSDATE,
+    FOREIGN KEY (member_id) REFERENCES Member(id) ON DELETE CASCADE
+);
+
+-- BusinessMember (사업자 전용 정보)
+CREATE TABLE BusinessMember (
+    id            VARCHAR2(20) PRIMARY KEY,
+    biz_number    VARCHAR2(20) UNIQUE NOT NULL,
+    company_name  VARCHAR2(100),
+    CONSTRAINT fk_bizmember FOREIGN KEY (id) REFERENCES Member(id) ON DELETE CASCADE
+);
+
+-- 사업자정보 테이블 (PII)
+CREATE TABLE BusinessMemberPrivate (
+    id        VARCHAR2(20) PRIMARY KEY,
+    company_address   VARCHAR2(200),
+    company_tel       VARCHAR2(20),
+    company_email     VARCHAR2(100) UNIQUE,
+    FOREIGN KEY (id) REFERENCES BusinessMember(id) ON DELETE CASCADE
+);
+
+
+
+-- 관리자 역할
+CREATE TABLE AdminRole (
+    role_name     VARCHAR2(20) PRIMARY KEY,     -- 예: super, general, cs
+    description   VARCHAR2(100)
+);
+
+-- 관리자 계정
+CREATE TABLE Admin (
+    admin_id      VARCHAR2(20) PRIMARY KEY,         
+    password      VARCHAR2(255) NOT NULL,            
+    name          VARCHAR2(50) NOT NULL,             
+    email         VARCHAR2(100) UNIQUE NOT NULL,
+    role          VARCHAR2(20),
+    status        CHAR(1) DEFAULT 'A' CHECK (status IN ('A', 'D')), -- A:활성, D:비활성
+    created_at    DATE DEFAULT SYSDATE,
+    FOREIGN KEY (role) REFERENCES AdminRole(role_name) ON DELETE SET NULL
+);
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 -- 상품 분류 테이블
 create table Catergory (
 	code varchar2(10) primary key,
@@ -48,7 +130,10 @@ CREATE TABLE NewProduct (
     code           varchar2(10) references Catergory(code)
   --  FOREIGN KEY (biz_id) REFERENCES BusinessMember(biz_id)
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 select * from newProduct;
 -- 중고 상품 테이블
 CREATE TABLE OldProduct (
@@ -134,7 +219,11 @@ CREATE TABLE Like1 (
     FOREIGN KEY (id) REFERENCES Member(id),
     FOREIGN KEY (np_no) REFERENCES NewProduct(np_no)
 );
+<<<<<<< HEAD
 drop table board;
+=======
+
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 -- 게시판 테이블
 CREATE TABLE Board (
     b_no      NUMBER(10) PRIMARY KEY NOT NULL,
@@ -144,13 +233,22 @@ CREATE TABLE Board (
     b_view    NUMBER(10),
     b_image   VARCHAR2(300),
     b_del     CHAR(1),
+<<<<<<< HEAD
+=======
+    b_ref     NUMBER(10),
+    b_step    NUMBER(10),
+    b_level   NUMBER(10),
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
     id        VARCHAR2(20) NOT NULL,
     FOREIGN KEY (id) REFERENCES Member(id)
 );
 
 -- 임시 데이터
 -- 회원 테이블 데이터 (10건)
+<<<<<<< HEAD
 select * from Member ;
+=======
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 INSERT ALL
     INTO Member VALUES ('user01', 'password123', '김철수', '서울시 강남구 역삼동 123-45', '010-1234-5678', 'kimcs@email.com', SYSDATE-30, 'N', 'N', 'N')
     INTO Member VALUES ('user02', 'password456', '이영희', '서울시 서초구 방배동 67-89', '010-2345-6789', 'leeyh@email.com', SYSDATE-25, 'N', 'N', 'N')
@@ -180,6 +278,7 @@ SELECT 1 FROM DUAL;
 
 -- 새 상품 테이블 데이터 (10건)
 INSERT ALL
+<<<<<<< HEAD
     INTO NewProduct VALUES (1, '애플 아이폰 15', '최신 아이폰 15입니다. 256GB 모델', 'iphone15.jpg', 1200000, 10, SYSDATE-10, 25, 100, 'biz01', 'a1')
     INTO NewProduct VALUES (2, '삼성 갤럭시 S24', '갤럭시 S24 울트라 512GB', 'galaxy_s24.jpg', 1500000, 15, SYSDATE-8, 18, 50, 'biz01', 'a1')
     INTO NewProduct VALUES (3, '맥북 프로 M3', '14인치 맥북 프로 M3 칩', 'macbook_pro.jpg', 2500000, 5, SYSDATE-5, 32, 30, 'biz02', 'a1')
@@ -190,6 +289,18 @@ INSERT ALL
     INTO NewProduct VALUES (8, '닌텐도 스위치 OLED', '휴대용 게임 콘솔', 'nintendo_switch.jpg', 400000, 12, SYSDATE-4, 28, 35, 'biz04','a1')
     INTO NewProduct VALUES (9, '아이패드 에어 5세대', '10.9인치 아이패드 에어', 'ipad_air.jpg', 900000, 10, SYSDATE-2, 19, 45, 'biz05','a1')
     INTO NewProduct VALUES (10, 'LG 울트라기어 모니터', '27인치 게이밍 모니터 144Hz', 'lg_monitor.jpg', 350000, 25, SYSDATE, 31, 20, 'biz05','a1')
+=======
+    INTO NewProduct VALUES (1, '애플 아이폰 15', '최신 아이폰 15입니다. 256GB 모델', 'iphone15.jpg', 1200000, 10, SYSDATE-10, 25, 100, 'iphone15_detail.jpg', 'biz01')
+    INTO NewProduct VALUES (2, '삼성 갤럭시 S24', '갤럭시 S24 울트라 512GB', 'galaxy_s24.jpg', 1500000, 15, SYSDATE-8, 18, 50, 'galaxy_s24_detail.jpg', 'biz01')
+    INTO NewProduct VALUES (3, '맥북 프로 M3', '14인치 맥북 프로 M3 칩', 'macbook_pro.jpg', 2500000, 5, SYSDATE-5, 32, 30, 'macbook_detail.jpg', 'biz02')
+    INTO NewProduct VALUES (4, 'LG 그램 노트북', '17인치 초경량 노트북', 'lg_gram.jpg', 1800000, 20, SYSDATE-3, 15, 25, 'lg_gram_detail.jpg', 'biz02')
+    INTO NewProduct VALUES (5, '에어팟 프로 2세대', '노이즈 캔슬링 무선 이어폰', 'airpods_pro.jpg', 350000, 12, SYSDATE-1, 41, 80, 'airpods_detail.jpg', 'biz03')
+    INTO NewProduct VALUES (6, '갤럭시 탭 S9', '11인치 안드로이드 태블릿', 'galaxy_tab.jpg', 800000, 8, SYSDATE-7, 22, 40, 'galaxy_tab_detail.jpg', 'biz03')
+    INTO NewProduct VALUES (7, '소니 WH-1000XM5', '프리미엄 노이즈 캔슬링 헤드폰', 'sony_headphone.jpg', 450000, 18, SYSDATE-6, 35, 60, 'sony_headphone_detail.jpg', 'biz04')
+    INTO NewProduct VALUES (8, '닌텐도 스위치 OLED', '휴대용 게임 콘솔', 'nintendo_switch.jpg', 400000, 12, SYSDATE-4, 28, 35, 'nintendo_detail.jpg', 'biz04')
+    INTO NewProduct VALUES (9, '아이패드 에어 5세대', '10.9인치 아이패드 에어', 'ipad_air.jpg', 900000, 10, SYSDATE-2, 19, 45, 'ipad_air_detail.jpg', 'biz05')
+    INTO NewProduct VALUES (10, 'LG 울트라기어 모니터', '27인치 게이밍 모니터 144Hz', 'lg_monitor.jpg', 350000, 25, SYSDATE, 31, 20, 'lg_monitor_detail.jpg', 'biz05')
+>>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 SELECT 1 FROM DUAL;
 
 -- 중고 상품 테이블 데이터 (10건)
