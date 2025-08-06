@@ -18,21 +18,29 @@ public class Join implements CommandProcess {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
-		String id = request.getParameter("userId_individual");
-		String pw = request.getParameter("userPw_individual");
-		String name = request.getParameter("userName_individual");
-		String addr = request.getParameter("userAddress_individual");
-		String tel = request.getParameter("userTel_individual");
-		String email = request.getParameter("userEmail_individual");
-		
 		Member member = new Member();
+		
+		String bizNum = request.getParameter("business_num");
+		String compName = request.getParameter("company_name");
+		String userTel = request.getParameter("userTel");
+		String bizAddr = request.getParameter("userAddr");
+		String bizEmail = request.getParameter("userEmail_biz");
+
+		String id = request.getParameter("userId");
+		String pw = request.getParameter("userPw");
+		String email = request.getParameter("userEmail_individual");
+
 		member.setId(id);
 		member.setPassword(pw);
-		member.setName(name);
-		member.setAddress(addr);
-		member.setTel(tel);
 		member.setEmail(email);
+		
+		if(bizNum != null) {
+			
+		}else {
+			
+		}
+		
+		
 		
 		int result = 0;
 		

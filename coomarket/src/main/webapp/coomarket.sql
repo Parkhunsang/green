@@ -2,15 +2,16 @@
 CREATE TABLE Member (
     id            VARCHAR2(20) PRIMARY KEY,
     password      VARCHAR2(255),
-    name          VARCHAR2(50),
     email         VARCHAR2(100) UNIQUE NOT NULL,
     member_type   CHAR(1) NOT NULL CHECK (member_type IN ('i', 'b')), --일반 i 비즈니스 b
     status		  CHAR(1) DEFAULT 'A' CHECK (status IN ('A', 'D', 'S')) -- 활성화 A 삭제대기 D 계정정지 S
 );
+alter table Member add reg_date date default sysdate;
 
 -- 개인정보 테이블 (PII)
 CREATE TABLE MemberPrivate (
     id        		 VARCHAR2(20) PRIMARY KEY,
+    name          VARCHAR2(50),
     address   		 VARCHAR2(200),
     address_detail   VARCHAR2(200),
     tel       		 VARCHAR2(20) UNIQUE,
