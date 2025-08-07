@@ -1,2 +1,3 @@
-2025/08/06-17:20:38.735 448c Creating DB C:\coomarket\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db\metadata since it was missing.
-2025/08/06-17:20:38.765 448c Reusing MANIFEST C:\coomarket\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db\metadata/MANIFEST-000001
+2025/08/07-09:58:34.427 1e6c Reusing MANIFEST C:\coomarket\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db\metadata/MANIFEST-000001
+2025/08/07-09:58:34.427 1e6c Recovering log #3
+2025/08/07-09:58:34.428 1e6c Reusing old log C:\coomarket\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db\metadata/000003.log 

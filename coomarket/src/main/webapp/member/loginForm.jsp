@@ -14,9 +14,7 @@
 <section class="accountsForm">
     <h1>로그인</h1>
     <div id="loginForm_inner">
-        <form action="login.jeong">
         <form action="/coomarket/member/login.jeong">
-
             <div class="loginForm_inputBox">
                 <label for="loginId">아이디</label>
                 <input type="text" name="userId" id="loginId" required="required"/>
@@ -27,7 +25,6 @@
             </div>
             <input type="submit" id="loginSubmit" value="로그인">
         </form>
-        <a href="#" id="loginForm_joinLink">아직 계정이 없으세요???? >><span>회원가입</span></a>
         <a href="/coomarket/member/joinType.jeong" id="loginForm_joinLink">아직 계정이 없으세요???? >><span>회원가입</span></a>
     </div>
 </section>

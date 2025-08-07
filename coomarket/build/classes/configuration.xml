@@ -8,6 +8,7 @@
 		<typeAlias alias="board" type="model.Board" />
 		<typeAlias alias="newProduct" type="model.NewProduct" />
 		<typeAlias alias="category" type="model.Category" />
+
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -25,7 +26,5 @@
 		<mapper resource="board.xml" />
 		<mapper resource="newProduct.xml" />
 		<mapper resource="category.xml" />
-
-
 	</mappers>
 </configuration>

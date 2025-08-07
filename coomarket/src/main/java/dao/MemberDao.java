@@ -31,10 +31,7 @@ public class MemberDao {
 		
 		return (Member) session.selectOne("memberns.select",id);
 	}
-<<<<<<< HEAD
-=======
 	public int insert(Member member) {
 		return session.insert("memberns.insert",member);
 	}
->>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 }

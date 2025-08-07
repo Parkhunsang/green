@@ -66,21 +66,18 @@ public class Controller_hun extends HttpServlet {
 	    throws ServletException, IOException {
 		String view = null;
 	    CommandProcess com=null;
-	    try { // map key:message.do   Message객체
-//	  url : http://localhost(ip번호):8080/ch13/message.do
+	    try {
+
 	    	  String command = request.getRequestURI();
-	    	  // command : /ch13/message.do
-	    	  // request.getContextPath() : /ch13
-	    	  // request.getContextPath().length()+1 : 6
+
 		      command = command.substring(
 		    		 request.getContextPath().length()+1); 
-		      // command : message.do
+
 	          com = (CommandProcess)commandMap.get(command); 
-	          // com : service.Message객체를 CommandProcess로 형변환
-	          // 자식 즉 Message객체의 requestPro()메소드 실행
+
 	          view = com.requestPro(request, response);
 	    } catch(Throwable e) { throw new ServletException(e); } 
-//	 view는 pgm article에 보여줄 프로그램
+
 	    RequestDispatcher dispatcher =
 	      	request.getRequestDispatcher(view+".jsp");
 	   dispatcher.forward(request, response);

@@ -6,10 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Coo-Market</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet">
 <title>coomarket</title>
 
 <link
@@ -22,16 +18,11 @@
 	@import url("/coomarket/css/common.css");
 </style>
 
-
 <deco:head></deco:head>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<deco:body></deco:body>
 	<jsp:include page="footer.jsp"></jsp:include>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
