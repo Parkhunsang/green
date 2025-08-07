@@ -48,8 +48,6 @@ CREATE TABLE BusinessMemberPrivate (
     FOREIGN KEY (id) REFERENCES BusinessMember(id) ON DELETE CASCADE
 );
 
-
-
 -- 관리자 역할
 CREATE TABLE AdminRole (
     role_name     VARCHAR2(20) PRIMARY KEY,     -- 예: super, general, cs
@@ -67,15 +65,6 @@ CREATE TABLE Admin (
     created_at    DATE DEFAULT SYSDATE,
     FOREIGN KEY (role) REFERENCES AdminRole(role_name) ON DELETE SET NULL
 );
-
-
-
-
-
-
-
-
-
 
 -- 상품 분류 테이블
 create table Catergory (
@@ -100,6 +89,7 @@ CREATE TABLE NewProduct (
     code           varchar2(10) references Catergory(code)
   --  FOREIGN KEY (biz_id) REFERENCES BusinessMember(biz_id)
 );
+
 select * from newProduct;
 -- 중고 상품 테이블
 CREATE TABLE OldProduct (
@@ -233,16 +223,16 @@ SELECT 1 FROM DUAL;
 
 -- 새 상품 테이블 데이터 (10건)
 INSERT ALL
-    INTO NewProduct VALUES (1, '애플 아이폰 15', '최신 아이폰 15입니다. 256GB 모델', 'iphone15.jpg', 1200000, 10, SYSDATE-10, 25, 100, 'iphone15_detail.jpg', 'biz01')
-    INTO NewProduct VALUES (2, '삼성 갤럭시 S24', '갤럭시 S24 울트라 512GB', 'galaxy_s24.jpg', 1500000, 15, SYSDATE-8, 18, 50, 'galaxy_s24_detail.jpg', 'biz01')
-    INTO NewProduct VALUES (3, '맥북 프로 M3', '14인치 맥북 프로 M3 칩', 'macbook_pro.jpg', 2500000, 5, SYSDATE-5, 32, 30, 'macbook_detail.jpg', 'biz02')
-    INTO NewProduct VALUES (4, 'LG 그램 노트북', '17인치 초경량 노트북', 'lg_gram.jpg', 1800000, 20, SYSDATE-3, 15, 25, 'lg_gram_detail.jpg', 'biz02')
-    INTO NewProduct VALUES (5, '에어팟 프로 2세대', '노이즈 캔슬링 무선 이어폰', 'airpods_pro.jpg', 350000, 12, SYSDATE-1, 41, 80, 'airpods_detail.jpg', 'biz03')
-    INTO NewProduct VALUES (6, '갤럭시 탭 S9', '11인치 안드로이드 태블릿', 'galaxy_tab.jpg', 800000, 8, SYSDATE-7, 22, 40, 'galaxy_tab_detail.jpg', 'biz03')
-    INTO NewProduct VALUES (7, '소니 WH-1000XM5', '프리미엄 노이즈 캔슬링 헤드폰', 'sony_headphone.jpg', 450000, 18, SYSDATE-6, 35, 60, 'sony_headphone_detail.jpg', 'biz04')
-    INTO NewProduct VALUES (8, '닌텐도 스위치 OLED', '휴대용 게임 콘솔', 'nintendo_switch.jpg', 400000, 12, SYSDATE-4, 28, 35, 'nintendo_detail.jpg', 'biz04')
-    INTO NewProduct VALUES (9, '아이패드 에어 5세대', '10.9인치 아이패드 에어', 'ipad_air.jpg', 900000, 10, SYSDATE-2, 19, 45, 'ipad_air_detail.jpg', 'biz05')
-    INTO NewProduct VALUES (10, 'LG 울트라기어 모니터', '27인치 게이밍 모니터 144Hz', 'lg_monitor.jpg', 350000, 25, SYSDATE, 31, 20, 'lg_monitor_detail.jpg', 'biz05')
+    INTO NewProduct VALUES (1, '애플 아이폰 15', '최신 아이폰 15입니다. 256GB 모델', 'iphone15.jpg', 1200000, 10, SYSDATE-10, 25, 100, 'biz01', 'a1')
+    INTO NewProduct VALUES (2, '삼성 갤럭시 S24', '갤럭시 S24 울트라 512GB', 'galaxy_s24.jpg', 1500000, 15, SYSDATE-8, 18, 50, 'biz01', 'a1')
+    INTO NewProduct VALUES (3, '맥북 프로 M3', '14인치 맥북 프로 M3 칩', 'macbook_pro.jpg', 2500000, 5, SYSDATE-5, 32, 30, 'biz02', 'a1')
+    INTO NewProduct VALUES (4, 'LG 그램 노트북', '17인치 초경량 노트북', 'lg_gram.jpg', 1800000, 20, SYSDATE-3, 15, 25, 'biz02', 'a1')
+    INTO NewProduct VALUES (5, '에어팟 프로 2세대', '노이즈 캔슬링 무선 이어폰', 'airpods_pro.jpg', 350000, 12, SYSDATE-1, 41, 80, 'biz03', 'a1')
+    INTO NewProduct VALUES (6, '갤럭시 탭 S9', '11인치 안드로이드 태블릿', 'galaxy_tab.jpg', 800000, 8, SYSDATE-7, 22, 40, 'biz03', 'a1')
+    INTO NewProduct VALUES (7, '소니 WH-1000XM5', '프리미엄 노이즈 캔슬링 헤드폰', 'sony_headphone.jpg', 450000, 18, SYSDATE-6, 35, 60, 'biz04', 'a1')
+    INTO NewProduct VALUES (8, '닌텐도 스위치 OLED', '휴대용 게임 콘솔', 'nintendo_switch.jpg', 400000, 12, SYSDATE-4, 28, 35, 'biz04','a1')
+    INTO NewProduct VALUES (9, '아이패드 에어 5세대', '10.9인치 아이패드 에어', 'ipad_air.jpg', 900000, 10, SYSDATE-2, 19, 45, 'biz05','a1')
+    INTO NewProduct VALUES (10, 'LG 울트라기어 모니터', '27인치 게이밍 모니터 144Hz', 'lg_monitor.jpg', 350000, 25, SYSDATE, 31, 20, 'biz05','a1')
 SELECT 1 FROM DUAL;
 
 -- 중고 상품 테이블 데이터 (10건)

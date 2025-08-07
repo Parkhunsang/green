@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardns">
+	<select id="select" parameterType="integer" resultType="board">
+		select * from board where b_no=#{b_no}
+	</select>
+	<insert id="insert" parameterType="board">
+		<selectKey keyProperty="b_no" order="BEFORE" resultType="integer" >
+			select nvl(max(b_no),0) + 1 from board
+		</selectKey>
+		insert into board values(#{b_no},#{b_title},#{b_content}, sysdate, 0,#{b_image},'n', #{id})
+	</insert>
+	<update id="update" parameterType="board">
+        UPDATE board1
+           SET b_step = b_step + 1
+         WHERE b_ref = #{b_ref}
+           AND b_step > #{b_step}
+    </update>
+</mapper>

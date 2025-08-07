@@ -25,6 +25,7 @@
 						<h2 class="hidden">메인메뉴</h2>
 						<ul id="mainMenu_list">
 							<li>중고거래</li>
+							<li><a href="/coomarket/client/goodsList.hun">쿠스토어</a></li>
 							<li>쿠스토어</li>
 							<li>우리동네</li>
 						</ul>
