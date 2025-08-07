@@ -191,7 +191,8 @@ CREATE TABLE Board (
     id        VARCHAR2(20) NOT NULL,
     FOREIGN KEY (id) REFERENCES Member(id)
 );
-
+select * from NEWPRODUCT;
+update NEWPRODUCT set np_image = 'images.jpg';
 -- 임시 데이터
 -- 회원 테이블 데이터 (10건)
 INSERT ALL
@@ -221,18 +222,38 @@ INSERT ALL
     INTO BusinessMember VALUES ('biz10', '012-34-56789', '한대표 스토어', '부천시 원미구 중동', 0320123456, 'hanbiz@email.com', SYSDATE-10, 'N', 'N')
 SELECT 1 FROM DUAL;
 
--- 새 상품 테이블 데이터 (10건)
+-- 새 상품 테이블 데이터 (10건) -- image값 변경 필요
 INSERT ALL
-    INTO NewProduct VALUES (1, '애플 아이폰 15', '최신 아이폰 15입니다. 256GB 모델', 'iphone15.jpg', 1200000, 10, SYSDATE-10, 25, 100, 'biz01', 'a1')
-    INTO NewProduct VALUES (2, '삼성 갤럭시 S24', '갤럭시 S24 울트라 512GB', 'galaxy_s24.jpg', 1500000, 15, SYSDATE-8, 18, 50, 'biz01', 'a1')
-    INTO NewProduct VALUES (3, '맥북 프로 M3', '14인치 맥북 프로 M3 칩', 'macbook_pro.jpg', 2500000, 5, SYSDATE-5, 32, 30, 'biz02', 'a1')
-    INTO NewProduct VALUES (4, 'LG 그램 노트북', '17인치 초경량 노트북', 'lg_gram.jpg', 1800000, 20, SYSDATE-3, 15, 25, 'biz02', 'a1')
-    INTO NewProduct VALUES (5, '에어팟 프로 2세대', '노이즈 캔슬링 무선 이어폰', 'airpods_pro.jpg', 350000, 12, SYSDATE-1, 41, 80, 'biz03', 'a1')
-    INTO NewProduct VALUES (6, '갤럭시 탭 S9', '11인치 안드로이드 태블릿', 'galaxy_tab.jpg', 800000, 8, SYSDATE-7, 22, 40, 'biz03', 'a1')
-    INTO NewProduct VALUES (7, '소니 WH-1000XM5', '프리미엄 노이즈 캔슬링 헤드폰', 'sony_headphone.jpg', 450000, 18, SYSDATE-6, 35, 60, 'biz04', 'a1')
-    INTO NewProduct VALUES (8, '닌텐도 스위치 OLED', '휴대용 게임 콘솔', 'nintendo_switch.jpg', 400000, 12, SYSDATE-4, 28, 35, 'biz04','a1')
-    INTO NewProduct VALUES (9, '아이패드 에어 5세대', '10.9인치 아이패드 에어', 'ipad_air.jpg', 900000, 10, SYSDATE-2, 19, 45, 'biz05','a1')
-    INTO NewProduct VALUES (10, 'LG 울트라기어 모니터', '27인치 게이밍 모니터 144Hz', 'lg_monitor.jpg', 350000, 25, SYSDATE, 31, 20, 'biz05','a1')
+    INTO NewProduct VALUES (1, '애플 아이폰 15', '최신 아이폰 15입니다. 256GB 모델', 'images.jpg', 1200000, 10, SYSDATE-10, 25, 100, 'biz01', 'a1')
+    INTO NewProduct VALUES (2, '삼성 갤럭시 S24', '갤럭시 S24 울트라 512GB', 'images.jpg', 1500000, 15, SYSDATE-8, 18, 50, 'biz01', 'a1')
+    INTO NewProduct VALUES (3, '맥북 프로 M3', '14인치 맥북 프로 M3 칩', 'images.jpg', 2500000, 5, SYSDATE-5, 32, 30, 'biz02', 'a1')
+    INTO NewProduct VALUES (4, 'LG 그램 노트북', '17인치 초경량 노트북', 'images.jpg', 1800000, 20, SYSDATE-3, 15, 25, 'biz02', 'a1')
+    INTO NewProduct VALUES (5, '에어팟 프로 2세대', '노이즈 캔슬링 무선 이어폰', 'images.jpg', 350000, 12, SYSDATE-1, 41, 80, 'biz03', 'a1')
+    INTO NewProduct VALUES (6, '갤럭시 탭 S9', '11인치 안드로이드 태블릿', 'images.jpg', 800000, 8, SYSDATE-7, 22, 40, 'biz03', 'a1')
+    INTO NewProduct VALUES (7, '소니 WH-1000XM5', '프리미엄 노이즈 캔슬링 헤드폰', 'images.jpg', 450000, 18, SYSDATE-6, 35, 60, 'biz04', 'a1')
+    INTO NewProduct VALUES (8, '닌텐도 스위치 OLED', '휴대용 게임 콘솔', 'images.jpg', 400000, 12, SYSDATE-4, 28, 35, 'biz04','a1')
+    INTO NewProduct VALUES (9, '아이패드 에어 5세대', '10.9인치 아이패드 에어', 'images.jpg', 900000, 10, SYSDATE-2, 19, 45, 'biz05','a1')
+    INTO NewProduct VALUES (10, 'LG 울트라기어 모니터', '27인치 게이밍 모니터 144Hz', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz06','a1')
+    INTO NewProduct VALUES (11, 'LG 울트라기어 모니터1', '27인치 게이밍 모니터 144Hz1', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz07','a1')
+    INTO NewProduct VALUES (12, 'LG 울트라기어 모니터2', '27인치 게이밍 모니터 144Hz2', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz08','a1')
+    INTO NewProduct VALUES (13, 'LG 울트라기어 모니터3', '27인치 게이밍 모니터 144Hz3', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz09','a1')
+    INTO NewProduct VALUES (14, 'LG 울트라기어 모니터4', '27인치 게이밍 모니터 144Hz4', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz10','a1')
+    INTO NewProduct VALUES (15, 'LG 울트라기어 모니터5', '27인치 게이밍 모니터 144Hz5', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz11','a1')
+    INTO NewProduct VALUES (16, 'LG 울트라기어 모니터6', '27인치 게이밍 모니터 144Hz6', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz12','a1')
+    INTO NewProduct VALUES (17, 'LG 울트라기어 모니터7', '27인치 게이밍 모니터 144Hz7', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz13','a1')
+    INTO NewProduct VALUES (18, 'LG 울트라기어 모니터8', '27인치 게이밍 모니터 144Hz8', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz14','a1')
+    INTO NewProduct VALUES (19, 'LG 울트라기어 모니터9', '27인치 게이밍 모니터 144Hz9', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz15','a1')
+    INTO NewProduct VALUES (20, 'LG 울트라기어 모니터10', '27인치 게이밍 모니터 144Hz10', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz16','a1')
+    INTO NewProduct VALUES (21, 'LG 울트라기어 모니터11', '27인치 게이밍 모니터 144Hz11', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz17','a1')
+    INTO NewProduct VALUES (22, 'LG 울트라기어 모니터12', '27인치 게이밍 모니터 144Hz12', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz18','a1')
+    INTO NewProduct VALUES (23, 'LG 울트라기어 모니터13', '27인치 게이밍 모니터 144Hz13', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz19','a1')
+    INTO NewProduct VALUES (24, 'LG 울트라기어 모니터14', '27인치 게이밍 모니터 144Hz14', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz20','a1')
+    INTO NewProduct VALUES (25, 'LG 울트라기어 모니터15', '27인치 게이밍 모니터 144Hz15', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz21','a1')
+    INTO NewProduct VALUES (26, 'LG 울트라기어 모니터16', '27인치 게이밍 모니터 144Hz16', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz22','a1')
+    INTO NewProduct VALUES (27, 'LG 울트라기어 모니터17', '27인치 게이밍 모니터 144Hz17', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz23','a1')
+    INTO NewProduct VALUES (28, 'LG 울트라기어 모니터18', '27인치 게이밍 모니터 144Hz18', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz24','a1')
+    INTO NewProduct VALUES (29, 'LG 울트라기어 모니터19', '27인치 게이밍 모니터 144Hz19', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz25','a1')
+    INTO NewProduct VALUES (30, 'LG 울트라기어 모니터20', '27인치 게이밍 모니터 144Hz20', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz26','a1')
 SELECT 1 FROM DUAL;
 
 -- 중고 상품 테이블 데이터 (10건)

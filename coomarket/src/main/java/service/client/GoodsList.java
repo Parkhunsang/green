@@ -18,6 +18,7 @@ public class GoodsList implements CommandProcess {
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum==null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
+		
 		NewProductDao npd = NewProductDao.getInstance();
 		int total = npd.total();
 		int totalPage = (int)Math.ceil((double)total/rowPerPage);

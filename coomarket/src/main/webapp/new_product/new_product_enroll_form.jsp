@@ -9,11 +9,15 @@
 <h2>상품 등록</h2>
 <form action="new_product_enroll.hun" method="post" enctype="multipart/form-data">
 <table border="1">
-	<tr><th>카테고리</th><td><select name="code">
-		<c:forEach var="cate" items="${category_list }">
-			<option value="${cate.code }">${cate.name }</option>
-		</c:forEach>
-		</select></td></tr>
+	<tr><th>카테고리</th>
+		<td><select name="code">
+			<c:forEach var="cate" items="${category_list }">
+				<option value="${cate.code }">${cate.name }</option>
+			</c:forEach>
+			</select>
+		</td>
+	</tr>
+		
 	<tr><th>이름</th><td><input type="text" name="np_name" required="required" autofocus="autofocus"></td></tr>
 	<tr><th>내용</th><td> <textarea  name="np_content" required="required" rows="5" cols="40"></textarea>
 	<tr><th>이미지</th><td><input type="file" name="fileName" required="required"></td></tr>
