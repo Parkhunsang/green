@@ -1,4 +1,4 @@
-package service.member;
+package service.display;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

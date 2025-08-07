@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+C:\Users\kangc\Desktop\portfolio\COOMARKETtest\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1806464126.index
-2177524606.index
-3170302790.index
-2573268617.index
-2560140687.index
-2333546914.index
-1516257123.index
