@@ -14,7 +14,7 @@
 	<div>
 		<a href="/coomarket/board/boardWriteForm.hun?b_no=0">게시글 작성</a>
 	</div>
-s
+ssadsad
 	
 </body>
 </html>
