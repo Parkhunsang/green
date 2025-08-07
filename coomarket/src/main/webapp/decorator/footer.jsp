@@ -4,13 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>Coo-Market</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<footer>
 		사이트정보등등
-
 	</footer>
 
 </body>
