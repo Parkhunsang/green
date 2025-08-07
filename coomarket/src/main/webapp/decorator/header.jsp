@@ -45,6 +45,13 @@
 					</ul>
 				</div>
 			</div>
+			<div id="headerInner_searchBox">
+				<form action="">
+					<fieldset>
+						
+					</fieldset>
+				</form>
+			</div>
 		</div>
 	</header>
 </body>
