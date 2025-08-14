@@ -20,43 +20,28 @@ import service.CommandProcess;
 public class Controller_hun extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> commandMap = new HashMap<>();
-//	init method는 doGet() 또는 doPost() 메서드 하기전에 실행할 메서드
 	public void init(ServletConfig config) throws ServletException { 
 	   	String props = config.getInitParameter("config");
-	   	// props : "/WEB-INF/command.properties"
 	   	Properties pr = new Properties();
-	   	// Java Properties클래스의 특징 키=값을 가진 Map을 구현
 	    FileInputStream f = null;
 	    try {
 	          String configFilePath = 
 	         		config.getServletContext().getRealPath(props);
-	          // configFilePath 실제 사용할 위치에 있는 이름
 	          f = new FileInputStream(configFilePath);
 	          pr.load(f);
-	          // pr에는 command.properties라는 file의 데이터를 사용
-	          // =앞에 있는 message.do을 key
-	          // =뒤에 있는 ch13.service.Message을 값
 	    } catch (IOException e) { throw new ServletException(e);
 	     } finally {
 	          if (f != null) try { f.close(); } catch(IOException ex) {}
 	     }
 	     Iterator<Object> keyIter = pr.keySet().iterator();
-	     // message.do
 	     while( keyIter.hasNext() ) {
 	          String command = (String)keyIter.next(); 
-	          // command : message.do
 	          String className = pr.getProperty(command); 
-	          // className : ch13.service.Message문자
 	          try {
 	               Class<?> commandClass = Class.forName(className);
-	               // commandClass : service.Message 클래스
 	               Object commandInstance = 
 	            		  commandClass.getDeclaredConstructor().newInstance();
-	               // commandInstance : service.Message객체
 	               commandMap.put(command, commandInstance);
-	               // commnadMap에는
-	               // key가 message.do
-	               // 값이 Message객체
 	          } catch (Exception e) {
 	               throw new ServletException(e);
 	          }
@@ -72,9 +57,9 @@ public class Controller_hun extends HttpServlet {
 
 		      command = command.substring(
 		    		 request.getContextPath().length()+1); 
-
+		      System.out.println("command = "+command);
 	          com = (CommandProcess)commandMap.get(command); 
-
+	          System.out.println("com = "+com);
 	          view = com.requestPro(request, response);
 	    } catch(Throwable e) { throw new ServletException(e); } 
 

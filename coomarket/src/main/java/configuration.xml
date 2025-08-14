@@ -6,8 +6,13 @@
 	<typeAliases>
 		<typeAlias alias="member" type="model.Member" />
 		<typeAlias alias="board" type="model.Board" />
+		<typeAlias alias="businessMember" type="model.BusinessMember" />
+		<typeAlias alias="businessMemberPrivate" type="model.BusinessMemberPrivate" />
 		<typeAlias alias="newProduct" type="model.NewProduct" />
 		<typeAlias alias="category" type="model.Category" />
+		<typeAlias alias="oldCategory" type="model.OldCategory" />
+		<typeAlias alias="loc" type="model.Loc" />
+		<typeAlias alias="oldproduct" type="model.OldProduct" />
 
 	</typeAliases>
 	<environments default="development">
@@ -24,7 +29,12 @@
 	<mappers>
 		<mapper resource="member.xml" />
 		<mapper resource="board.xml" />
+		<mapper resource="BusinessMember.xml" />
 		<mapper resource="newProduct.xml" />
 		<mapper resource="category.xml" />
+		<mapper resource="oldCategory.xml" />
+		<mapper resource="loc.xml" />
+		<mapper resource="oldProduct.xml" />
+		
 	</mappers>
 </configuration>

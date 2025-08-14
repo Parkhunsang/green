@@ -5,16 +5,28 @@
 	<select id="select" parameterType="integer" resultType="board">
 		select * from board where b_no=#{b_no}
 	</select>
+	
 	<insert id="insert" parameterType="board">
 		<selectKey keyProperty="b_no" order="BEFORE" resultType="integer" >
 			select nvl(max(b_no),0) + 1 from board
 		</selectKey>
 		insert into board values(#{b_no},#{b_title},#{b_content}, sysdate, 0,#{b_image},'n', #{id})
 	</insert>
-	<update id="update" parameterType="board">
-        UPDATE board1
-           SET b_step = b_step + 1
-         WHERE b_ref = #{b_ref}
-           AND b_step > #{b_step}
-    </update>
+	
+    <update id="update" parameterType="board">
+		update board set b_no=#{b_no},b_title=#{b_title},b_content=#{b_content},b_date=#{b_date},
+			b_view=#{b_view},b_image=#{b_image},b_del=#{b_del},id=#{id}
+			<if test="b_image!=null and b_image!=''">
+				,b_image=#{b_image}
+			</if>
+			where b_no=#{b_no}
+	</update>
+    
+    <select id="total" resultType="integer">
+		select count(*) from board
+	</select>
+	
+	<select id="list" parameterType="map" resultType="board" >
+		select * from board order by b_no desc offset #{startRow} rows fetch next #{rowPerPage} rows only
+	</select>
 </mapper>

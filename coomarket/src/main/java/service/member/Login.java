@@ -20,7 +20,9 @@ public class Login implements CommandProcess {
 		
 		int result = 0;
 		
-		if(member == null || member.getDel().equals("y")) result = -1; //멤버 데이터가 없거나 계정삭제 상태가 y인 경우
+		String status = member.getStatus();
+		
+		if(member == null || status.equals("D") || status.equals("S")) result = -1; //멤버 데이터가 없거나 계정상태가 D(삭제) S(정지)인경우
 		else if(member.getPassword().equals(pw)) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("id", id);

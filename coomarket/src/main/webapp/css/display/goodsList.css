@@ -9,7 +9,6 @@ div#goods_list_wrap{
     height: auto;
     display: flex;
     justify-content: center;
-    
 }
 div#goods_list_inner_wrap{
 	width:1400px;
@@ -55,4 +54,15 @@ p.span_wrap{
 	color:red;
 	font:500 12px 'pretendard';
 	margin-bottom:8px;
+}
+div#number{
+	display:flex;
+	justify-content:center;
+	margin-top:40px;
+}
+div#number button{
+	background:none;
+	border:none;
+	cursor:pointer;
+	font:400 14px "pretendard";
 }

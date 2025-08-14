@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6ff9406c3aae50e266f3fa5a35625d8621c7ed63
 -- 회원 테이블 (일반 + 사업자 구분)
 CREATE TABLE Member (
     id            VARCHAR(20) PRIMARY KEY,

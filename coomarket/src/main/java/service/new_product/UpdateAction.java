@@ -33,6 +33,7 @@ public class UpdateAction implements CommandProcess {
 	    String code = mr.getParameter("code"); 
 	    
 	    NewProduct newProduct = new NewProduct();
+	    
 	    newProduct.setNp_no(np_no);
 	    newProduct.setNp_name(np_name);
 	    newProduct.setNp_content(np_content);

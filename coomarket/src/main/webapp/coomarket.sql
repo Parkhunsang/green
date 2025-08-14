@@ -3,10 +3,17 @@ CREATE TABLE Member (
     id            VARCHAR2(20) PRIMARY KEY,
     password      VARCHAR2(255),
     email         VARCHAR2(100) UNIQUE NOT NULL,
-    member_type   CHAR(1) NOT NULL CHECK (member_type IN ('i', 'b')), --일반 i 비즈니스 b
-    status		  CHAR(1) DEFAULT 'A' CHECK (status IN ('A', 'D', 'S')) -- 활성화 A 삭제대기 D 계정정지 S
+    member_type   CHAR(1) NOT NULL CHECK (member_type IN ('I', 'B')), --일반 I 비즈니스 B
+    status		  CHAR(1) DEFAULT 'A' CHECK (status IN ('A', 'D', 'S')), -- 활성화 A 삭제대기 D 계정정지 S
+    reg_date DATE default sysdate
 );
-alter table Member add reg_date date default sysdate;
+
+select * from Member;
+select * from Member;
+insert into Member values ('test','a','a@a.com',trim('I'),trim('A'),sysdate);
+alter table Member rename column member_type to memberType;
+alter table Member rename column reg_date to regDate;
+delete member;
 
 -- 개인정보 테이블 (PII)
 CREATE TABLE MemberPrivate (
@@ -18,7 +25,8 @@ CREATE TABLE MemberPrivate (
     member_pic       VARCHAR2(255),
     FOREIGN KEY (id) REFERENCES Member(id) ON DELETE CASCADE
 );
-
+alter table MemberPrivate rename column address_detail to addressDetail;
+alter table MemberPrivate rename column member_pic to memberPic;
 -- 배송지 주소
 CREATE TABLE DeliveryAddress (
     address_id   NUMBER PRIMARY KEY,
@@ -30,6 +38,11 @@ CREATE TABLE DeliveryAddress (
     created_at DATE DEFAULT SYSDATE,
     FOREIGN KEY (member_id) REFERENCES Member(id) ON DELETE CASCADE
 );
+select * from DeliveryAddress;
+alter table DeliveryAddress rename column address_id to addressId;
+alter table DeliveryAddress rename column member_id to memberId;
+alter table DeliveryAddress rename column is_default to isDefault;
+alter table DeliveryAddress rename column created_at to createdAt;
 
 -- BusinessMember (사업자 전용 정보)
 CREATE TABLE BusinessMember (
@@ -38,6 +51,9 @@ CREATE TABLE BusinessMember (
     company_name  VARCHAR2(100),
     CONSTRAINT fk_bizmember FOREIGN KEY (id) REFERENCES Member(id) ON DELETE CASCADE
 );
+select * from BusinessMember;
+alter table BusinessMember rename column biz_number to bizNumber;
+alter table BusinessMember rename column company_name to companyName;
 
 -- 사업자정보 테이블 (PII)
 CREATE TABLE BusinessMemberPrivate (
@@ -47,12 +63,22 @@ CREATE TABLE BusinessMemberPrivate (
     company_email     VARCHAR2(100) UNIQUE,
     FOREIGN KEY (id) REFERENCES BusinessMember(id) ON DELETE CASCADE
 );
+select * from BusinessMemberPrivate;
+alter table BusinessMemberPrivate rename column company_address to companyAddress;
+alter table BusinessMemberPrivate rename column company_tel to companyTel;
+alter table BusinessMemberPrivate rename column company_email to companyEmail;
+
 
 -- 관리자 역할
 CREATE TABLE AdminRole (
     role_name     VARCHAR2(20) PRIMARY KEY,     -- 예: super, general, cs
     description   VARCHAR2(100)
 );
+select * from AdminRole;
+alter table AdminRole rename column role_name to roleName;
+insert into AdminRole values('owner','총관리');
+insert into AdminRole values('admin','컨텐츠,사용자 계정 관리, 사이트 운영 관련');
+insert into AdminRole values('editor','공지사항 작성/수정, 게시물 검토');
 
 -- 관리자 계정
 CREATE TABLE Admin (
@@ -65,15 +91,30 @@ CREATE TABLE Admin (
     created_at    DATE DEFAULT SYSDATE,
     FOREIGN KEY (role) REFERENCES AdminRole(role_name) ON DELETE SET NULL
 );
+select * from Admin;
+alter table Admin rename column admin_id to adminId;
+alter table Admin rename column created_at to createdAt;
 
 -- 상품 분류 테이블
 create table Catergory (
 	code varchar2(10) primary key,
 	name varchar2(20)
 );
+select * from Catergory;
+
+create table OldCategory(
+	oldCode varchar2(10) primary key,
+	oldName varchar2(20)
+);
+
+insert into OldCategory values('a1', '과자');
+insert into OldCategory values('b1', '과일');
+
+select * from oldCategory;
+
 insert into catergory values('a1', '과자');
 insert into catergory values('b1', '과일');
-drop table newProduct;
+
 -- 새 상품 테이블
 CREATE TABLE NewProduct (
     np_no          NUMBER(20) PRIMARY KEY NOT NULL,
@@ -89,8 +130,8 @@ CREATE TABLE NewProduct (
     code           varchar2(10) references Catergory(code)
   --  FOREIGN KEY (biz_id) REFERENCES BusinessMember(biz_id)
 );
-
 select * from newProduct;
+
 -- 중고 상품 테이블
 CREATE TABLE OldProduct (
     op_no          NUMBER(20) PRIMARY KEY NOT NULL,
@@ -103,9 +144,12 @@ CREATE TABLE OldProduct (
     op_like        NUMBER(20),
     op_status      CHAR(1),
     id             VARCHAR2(20) NOT NULL,
+    oldCode        varchar2(10) references OldCategory(oldCode),
     FOREIGN KEY (id) REFERENCES Member(id)
 );
 
+select * from OLDPRODUCT;
+insert into OLDPRODUCT (oldCode) values ()
 -- 중고 거래 테이블
 CREATE TABLE OldTrade (
     ot_no    NUMBER(20) PRIMARY KEY NOT NULL,
@@ -185,28 +229,41 @@ CREATE TABLE Board (
     b_view    NUMBER(10),
     b_image   VARCHAR2(300),
     b_del     CHAR(1),
-    b_ref     NUMBER(10),
-    b_step    NUMBER(10),
-    b_level   NUMBER(10),
     id        VARCHAR2(20) NOT NULL,
     FOREIGN KEY (id) REFERENCES Member(id)
 );
-select * from NEWPRODUCT;
-update NEWPRODUCT set np_image = 'images.jpg';
+select * from Board;
+ALTER TABLE Board DROP (b_ref, b_step, b_level);
+update NEWPRODUCT set np_image = 'images.jpg';.
+
+create table loc (
+	loc_name varchar2(20) primary key
+);
+
+ALTER TABLE loc
+MODIFY (loc_name VARCHAR2(40));
+
+insert into loc values('송도동');
+insert into loc values('역삼동');
+insert into loc values('물금읍');
+insert into loc values('봉담읍');
+insert into loc values('배방읍');
+insert into loc values('서초동');
+insert into loc values('옥정동');
+insert into loc values('신림동');
+insert into loc values('불당동');
+insert into loc values('향남읍');
+insert into loc values('청담동');
+insert into loc values('다산동');
+insert into loc values('별내동');
+insert into loc values('화도읍');
+insert into loc values('다사읍');
+insert into loc values('마곡동');
+insert into loc values('압구정동');
+
+
 -- 임시 데이터
 -- 회원 테이블 데이터 (10건)
-INSERT ALL
-    INTO Member VALUES ('user01', 'password123', '김철수', '서울시 강남구 역삼동 123-45', '010-1234-5678', 'kimcs@email.com', SYSDATE-30, 'N', 'N', 'N')
-    INTO Member VALUES ('user02', 'password456', '이영희', '서울시 서초구 방배동 67-89', '010-2345-6789', 'leeyh@email.com', SYSDATE-25, 'N', 'N', 'N')
-    INTO Member VALUES ('user03', 'password789', '박민수', '부산시 해운대구 우동 12-34', '010-3456-7890', 'parkms@email.com', SYSDATE-20, 'N', 'N', 'N')
-    INTO Member VALUES ('user04', 'password321', '정다은', '대구시 중구 동성로 56-78', '010-4567-8901', 'jeongde@email.com', SYSDATE-15, 'N', 'N', 'N')
-    INTO Member VALUES ('user05', 'password654', '최민지', '광주시 동구 충장로 90-12', '010-5678-9012', 'choimg@email.com', SYSDATE-12, 'N', 'N', 'N')
-    INTO Member VALUES ('user06', 'password987', '강호동', '대전시 유성구 봉명동 34-56', '010-6789-0123', 'kanghd@email.com', SYSDATE-10, 'N', 'N', 'N')
-    INTO Member VALUES ('user07', 'password111', '송지효', '울산시 남구 달동 78-90', '010-7890-1234', 'songjh@email.com', SYSDATE-8, 'N', 'N', 'N')
-    INTO Member VALUES ('admin01', 'admin123', '관리자', '서울시 종로구 세종로 1', '010-0000-0000', 'admin@email.com', SYSDATE-100, 'N', 'Y', 'N')
-    INTO Member VALUES ('biz01', 'bizpass123', '김사장', '서울시 마포구 홍대입구 11-22', '010-1111-1111', 'kimbiz@email.com', SYSDATE-50, 'N', 'N', 'B')
-    INTO Member VALUES ('biz02', 'bizpass456', '이대표', '서울시 강서구 가양동 33-44', '010-2222-2222', 'leebiz@email.com', SYSDATE-40, 'N', 'N', 'B')
-SELECT 1 FROM DUAL;
 
 -- 사업자 회원 테이블 데이터 (10건)
 INSERT ALL
@@ -254,22 +311,68 @@ INSERT ALL
     INTO NewProduct VALUES (28, 'LG 울트라기어 모니터18', '27인치 게이밍 모니터 144Hz18', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz24','a1')
     INTO NewProduct VALUES (29, 'LG 울트라기어 모니터19', '27인치 게이밍 모니터 144Hz19', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz25','a1')
     INTO NewProduct VALUES (30, 'LG 울트라기어 모니터20', '27인치 게이밍 모니터 144Hz20', 'images.jpg', 350000, 25, SYSDATE, 31, 20, 'biz26','a1')
-SELECT 1 FROM DUAL;
 
+SELECT 1 FROM DUAL;
+UPDATE newproduct SET np_image = np_no || '.jpg';
+SELECT * FROM NewProduct;
+select * from oldproduct where op_name like '%'||'작은'||'%';
 -- 중고 상품 테이블 데이터 (10건)
-INSERT ALL
-    INTO OldProduct VALUES (1, '중고 아이폰 12', '상태 좋은 아이폰 12 팝니다', 'used_iphone12.jpg', 600000, 0, SYSDATE-7, 8, 'used_iphone12_detail.jpg', 'S', 1, 'user01')
-    INTO OldProduct VALUES (2, '중고 갤럭시 노트20', '약간의 스크래치 있음', 'used_note20.jpg', 450000, 0, SYSDATE-5, 12, 'used_note20_detail.jpg', 'S', 1, 'user02')
-    INTO OldProduct VALUES (3, '중고 맥북 에어', '2020년 모델, 배터리 교체함', 'used_macbook.jpg', 800000, 0, SYSDATE-3, 6, 'used_macbook_detail.jpg', 'S', 1, 'user03')
-    INTO OldProduct VALUES (4, '중고 아이패드', '아이패드 8세대 32GB', 'used_ipad.jpg', 300000, 0, SYSDATE-2, 4, 'used_ipad_detail.jpg', 'C', 1, 'user04')
-    INTO OldProduct VALUES (5, '중고 에어팟', '1세대 에어팟, 케이스 포함', 'used_airpods.jpg', 80000, 0, SYSDATE-10, 15, 'used_airpods_detail.jpg', 'S', 1, 'user05')
-    INTO OldProduct VALUES (6, '중고 게이밍 마우스', '로지텍 G502 게이밍 마우스', 'used_mouse.jpg', 45000, 0, SYSDATE-8, 7, 'used_mouse_detail.jpg', 'S', 1, 'user06')
-    INTO OldProduct VALUES (7, '중고 키보드', '기계식 키보드 청축', 'used_keyboard.jpg', 120000, 0, SYSDATE-6, 9, 'used_keyboard_detail.jpg', 'C', 1, 'user07')
-    INTO OldProduct VALUES (8, '중고 모니터', '24인치 FHD 모니터', 'used_monitor.jpg', 180000, 0, SYSDATE-4, 11, 'used_monitor_detail.jpg', 'S', 1, 'user01')
-    INTO OldProduct VALUES (9, '중고 태블릿', '갤럭시 탭 A7 라이트', 'used_tablet.jpg', 150000, 0, SYSDATE-1, 5, 'used_tablet_detail.jpg', 'S', 1, 'user02')
-    INTO OldProduct VALUES (10, '중고 스마트워치', '애플워치 SE 1세대', 'used_watch.jpg', 200000, 0, SYSDATE, 3, 'used_watch_detail.jpg', 'S', 1, 'user03')
-SELECT 1 FROM DUAL;
+INSERT INTO OldProduct VALUES (11, '작은 HDMI 케이블', '급처합니다.', 'images01.jpg', 469734, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (22, '작은 선풍기 케이블', '급처합니다.', 'images01.jpg', 32100, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (23, '작은 손선풍기 케이블', '급처합니다.', 'images01.jpg', 98000, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (24, '작은 공기청정기 케이블', '급처합니다.', 'images01.jpg', 36000, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (25, '작은 모니터 케이블', '급처합니다.', 'images01.jpg', 9000, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (26, '사용감 있고 작은 사이즈의 티비 케이블', '급처합니다.', 'images01.jpg', 50000, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (27, '제일 작은 초소형 TV', '급처합니다.', 'images01.jpg', 20000, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (28, '작은 마우스 팝니다', '급처합니다.', 'images01.jpg', 36000, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (29, '제일 작은 마우스', '급처합니다.', 'images01.jpg', 57000, 0, SYSDATE-29, 1, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (12, '고급 청소기', '풀세트 구성입니다.', 'images01.jpg', 965028, 0, SYSDATE-17, 2, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (13, '대형 블렌더', '풀세트 구성입니다.', 'images01.jpg', 839174, 0, SYSDATE-17, 8, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (14, '작은 삼각대', '약간의 사용감 있음', 'images01.jpg', 819841, 0, SYSDATE-7, 18, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (15, '구형 노트북', '생활기스 있음', 'images01.jpg', 416845, 0, SYSDATE-28, 5, 'C', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (16, '대형 커피 머신', '직거래 선호', 'images01.jpg', 183673, 0, SYSDATE-27, 6, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (17, '휴대용 외장하드', '풀세트 구성입니다.', 'images01.jpg', 110200, 0, SYSDATE-25, 6, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (18, '블루투스 라디오', '사용에는 문제없습니다.', 'images01.jpg', 496287, 0, SYSDATE-8, 20, 'S', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (19, '작은 노이즈캔슬링 이어폰', '급처합니다.', 'images01.jpg', 80447, 0, SYSDATE-22, 18, 'C', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (20, '유선 노이즈캔슬링 이어폰', '거의 새 제품입니다.', 'images01.jpg', 481007, 0, SYSDATE-4, 5, 'C', 'test00', 'a1');
+INSERT INTO OldProduct VALUES (21, '중형 무선 공유기', '사용에는 문제없습니다.', 'images01.jpg', 916344, 0, SYSDATE-18, 8, 'S', 'test00', 'a1');
+    
+update OLDPRODUCT set op_image ='images01.jpg';
 
+
+
+UPDATE OLDPRODUCT SET op_image = 'mouse.jpg' WHERE op_no = 29;
+UPDATE OLDPRODUCT SET op_image = 'sMouse.jpg' WHERE op_no = 28;
+UPDATE OLDPRODUCT SET op_image = 'tv.jpg' WHERE op_no = 27;
+UPDATE OLDPRODUCT SET op_image = 'cable.jpg' WHERE op_no = 26;
+UPDATE OLDPRODUCT SET op_image = 'cable.jpg' WHERE op_no = 25;
+UPDATE OLDPRODUCT SET op_image = 'cable.jpg' WHERE op_no = 24;
+UPDATE OLDPRODUCT SET op_image = 'cable.jpg' WHERE op_no = 23;
+UPDATE OLDPRODUCT SET op_image = 'fanCable.jpg' WHERE op_no = 22;
+UPDATE OLDPRODUCT SET op_image = 'iptime.jpg' WHERE op_no = 21;
+UPDATE OLDPRODUCT SET op_image = '21.jpg' WHERE op_no = 20;
+UPDATE OLDPRODUCT SET op_image = '19.jpg' WHERE op_no = 19;
+UPDATE OLDPRODUCT SET op_image = '18.jpg' WHERE op_no = 18;
+UPDATE OLDPRODUCT SET op_image = '17.jpg' WHERE op_no = 17;
+UPDATE OLDPRODUCT SET op_image = 'coffeMachine.jpg' WHERE op_no = 16;
+UPDATE OLDPRODUCT SET op_image = 'noteBook.jpg' WHERE op_no = 15;
+UPDATE OLDPRODUCT SET op_image = 'triangle.jpg' WHERE op_no = 14;
+UPDATE OLDPRODUCT SET op_image = 'cleanMachine.jpg' WHERE op_no = 12;
+UPDATE OLDPRODUCT SET op_image = 'lastCable.jpg' WHERE op_no = 11;
+
+select * from OLDPRODUCT;
+
+INSERT INTO OldCategory (oldCode, oldName)
+VALUES ('c1', '전자제품');
+COMMIT;
+
+UPDATE OldProduct
+SET oldCode = 'c1'
+WHERE op_name LIKE '%케이블%';
+
+UPDATE OldProduct
+SET op_image = 'images01.jpg'
+WHERE op_no = 11;
 -- 중고 거래 테이블 데이터 (10건)
 INSERT ALL
     INTO OldTrade VALUES (1, '1', 'C', SYSDATE-2, 'user02')
@@ -282,6 +385,7 @@ INSERT ALL
     INTO OldTrade VALUES (8, '9', 'P', SYSDATE, 'user01')
     INTO OldTrade VALUES (9, '10', 'P', SYSDATE, 'user04')
     INTO OldTrade VALUES (10, '3', 'P', SYSDATE-1, 'user05')
+    
 SELECT 1 FROM DUAL;
 
 -- 장바구니 테이블 데이터 (10건)
@@ -355,17 +459,54 @@ INSERT ALL
 SELECT 1 FROM DUAL;
 
 -- 게시판 테이블 데이터 (10건)
-INSERT ALL
-    INTO Board VALUES (1, '사이트 이용 문의', '회원가입은 어떻게 하나요?', SYSDATE-10, 25, '', 'N', 1, 0, 0, 'user01')
-    INTO Board VALUES (2, '답변: 사이트 이용 문의', '회원가입 페이지에서 가능합니다.', SYSDATE-9, 15, '', 'N', 1, 1, 1, 'admin01')
-    INTO Board VALUES (3, '배송 관련 문의', '배송은 보통 며칠 걸리나요?', SYSDATE-8, 32, '', 'N', 3, 0, 0, 'user02')
-    INTO Board VALUES (4, '상품 추천 요청', '노트북 추천 부탁드려요', SYSDATE-5, 18, '', 'N', 4, 0, 0, 'user03')
-    INTO Board VALUES (5, '불만사항', '배송이 너무 늦어요', SYSDATE-3, 42, '', 'N', 5, 0, 0, 'user04')
-    INTO Board VALUES (6, '답변: 불만사항', '죄송합니다. 확인 후 연락드리겠습니다.', SYSDATE-2, 28, '', 'N', 5, 1, 1, 'admin01')
-    INTO Board VALUES (7, '이벤트 문의', '할인 이벤트 언제 하나요?', SYSDATE-1, 35, '', 'N', 7, 0, 0, 'user01')
-    INTO Board VALUES (8, '교환/반품 문의', '상품 교환이 가능한가요?', SYSDATE-7, 22, '', 'N', 8, 0, 0, 'user05')
-    INTO Board VALUES (9, '결제 관련 문의', '무통장입금도 가능한가요?', SYSDATE-6, 19, '', 'N', 9, 0, 0, 'user06')
-    INTO Board VALUES (10, '상품 문의', '재입고 예정이 있나요?', SYSDATE-4, 31, '', 'N', 10, 0, 0, 'user07')
-SELECT 1 FROM DUAL;
+INSERT INTO Board (b_no, b_title, b_content, b_date, b_view, b_image, b_del, id)
+VALUES (1,  '중고 거래 팁', '첫 구매자를 위한 체크리스트', SYSDATE-20, 35, NULL, 'N', 'test00');
 
-COMMIT;
+INSERT INTO Board VALUES (2,  '모니터 판매(27")', '직거래만 가능합니다.', SYSDATE-19, 52, 'images/monitor.jpg', 'N', 'test00');
+INSERT INTO Board VALUES (3,  '키보드 추천 부탁', '저소음 스위치 추천받아요.', SYSDATE-18, 21, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (4,  '그래픽카드 구매 후기', '가성비 좋아요.', SYSDATE-18, 28, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (5,  '노트북 램 업그레이드', '16→32GB 체감 후기', SYSDATE-17, 19, NULL, 'N', 'test00');
+
+INSERT INTO Board VALUES (6,  '헤드셋 나눔', '생활기스 있음, 직거래', SYSDATE-16, 40, 'images/headset.jpg', 'N', 'test00');
+INSERT INTO Board VALUES (7,  '공유기 설정 팁', '채널 고정 추천', SYSDATE-15, 14, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (8,  '중고폰 체크리스트', '배터리/통신사/침수 확인', SYSDATE-15, 33, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (9,  '의자 판매', '요철 약간, 사용감 보통', SYSDATE-14, 11, 'images/chair.jpg', 'N', 'test00');
+INSERT INTO Board VALUES (10, '책상 무료 드림', '직접 가져가실 분', SYSDATE-13, 26, NULL, 'N', 'test00');
+
+INSERT INTO Board VALUES (11, '마우스 추천', '무소음 위주로 찾습니다.', SYSDATE-12, 17, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (12, 'SSD 벤치 결과', '읽기/쓰기 속도 공유', SYSDATE-12, 23, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (13, '캡쳐보드 팝니다', '방송용 사용', SYSDATE-11, 15, 'images/capture.jpg', 'N', 'test00');
+INSERT INTO Board VALUES (14, '태블릿 수리기', '액정 교체 후기', SYSDATE-10, 18, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (15, '스피커 비교', '2채널 vs 사운드바', SYSDATE-9, 22, NULL, 'N', 'test00');
+
+INSERT INTO Board VALUES (16, '미니빔 추천', '원룸 사용자 경험', SYSDATE-8, 13, 'images/projector.jpg', 'N', 'test00');
+INSERT INTO Board VALUES (17, '케이블 대정리', '케이블 타이 꿀팁', SYSDATE-7, 9, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (18, '가성비 노트북', '12세대 i5 후기', SYSDATE-6, 31, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (19, '모니터 암 설치기', '책상 공간 확장', SYSDATE-5, 16, NULL, 'N', 'test00');
+INSERT INTO Board VALUES (20, '중고 직거래 장소', '추천 스팟 모음', SYSDATE-4, 27, NULL, 'N', 'test00');
+
+update Board set b_image ='images.png';
+
+-- 60자 버전
+UPDATE Board SET b_content = '상태 양호한 27인치 FHD 모니터, 색감과 밝기 우수하며 직거래만 가능합니다' WHERE b_no = 2;
+UPDATE Board SET b_content = '중급 사양의 그래픽카드, 발열 적고 소음 낮으며 가격 대비 성능이 만족스럽습니다' WHERE b_no = 4;
+UPDATE Board SET b_content = '기존 16GB에서 32GB로 업그레이드 후 멀티태스킹과 프로그램 실행 속도가 눈에 띄게 향상됨' WHERE b_no = 5;
+UPDATE Board SET b_content = '거래 전 반드시 배터리 건강도, 침수 이력, 통신사 락 여부를 철저히 확인하세요' WHERE b_no = 8;
+UPDATE Board SET b_content = '방송 송출 및 녹화용 4K 지원 캡쳐보드, 화질 선명하고 딜레이 없이 사용 가능하며 상태 양호' WHERE b_no = 13;
+
+
+UPDATE Board SET b_title='방이동 근처 혼자 등산 가실 분 계신가요',b_content = '주말에 한강변 따라 가볍게 걷고 등산하려고 해요. 왕복 2~3시간 코스 생각 중입니다.' WHERE b_no = 20;
+UPDATE Board SET b_title='중고 냉장고 급하게 구합니다' ,b_content = '이번 주 안에 300L 이상 냉장고 필요합니다. 사용감 있어도 깨끗하고 기능만 멀쩡하면 돼요.' WHERE b_no = 19;
+UPDATE Board SET b_title='잠실역 근처 조용한 카페 추천 좀요' ,b_content = '작업할 일이 많아서 3~4시간 앉아있어도 괜찮은 조용한 카페 있으면 알려주세요' WHERE b_no = 18;
+UPDATE Board SET b_title='전동 킥보드 배터리 수리 가능할까요' ,b_content = '2년 쓴 킥보드인데 충전이 안됩니다. 혹시 근처에서 저렴하게 수리 가능한 곳 있을까요?' WHERE b_no = 17;
+UPDATE Board SET b_title='반려견 같이 산책하실 분 구해요' ,b_content = '저녁 8시쯤 석촌호수 한 바퀴 같이 걸으실 분 있나요? 소형견 키우는 분이면 더 좋아요.' WHERE b_no = 16;
+
+select * from BOARD;
+
+
+UPDATE Board
+SET b_image = 'Rectangle.png'
+WHERE b_no = 15;
+-- 필요시 커밋
+-- COMMIT;
+

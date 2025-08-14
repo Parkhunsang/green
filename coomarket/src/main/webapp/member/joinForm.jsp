@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 
 <style type="text/css">
+	@import url("/coomarket/css/common.css");
 	@import url("/coomarket/css/member/account.css");
 </style>
 
@@ -31,12 +32,16 @@
 <body>
 <section class="accountsForm">
 	<h2 class="accountsForm_title">회원가입</h2>
-	<form action="/coomarket/member/join.jeong" name="frm" onsubmit="return chk()">
-		<fieldset>
-		
+	<c:if test="${type == 'B'}">
+		<form action="/coomarket/member/joinBusiness.jeong" name="frm" onsubmit="return chk()">
+	</c:if>
+	<c:if test="${type == 'I'}">
+		<form action="/coomarket/member/join.jeong" name="frm" onsubmit="return chk()">
+	</c:if>
+		<div id="joinFormBox">
 			<%-- 사업자 회원용 --%>
 			
-			<c:if test="${result==2}">
+			<c:if test="${type == 'B'}">
 				<div class="joinForm_inputBox jF_biz">
 					<label for="business_num" class="joinForm_label">
 						<span>사업자 번호</span>
@@ -98,12 +103,15 @@
 				<input type="email" name="userEmail_individual" id="userEmail_individual" class="joinForm_input" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 			</div>
 			<p class="joinForm_chkMsg" id="userEmail_chk_Message"></p>
-			<div>
-				<input type="submit" value="확인" />
+			<div id="joinForm_submitBox">
+				<input type="submit" value="확인" id="joinForm_submit" />
 			</div>
-		</fieldset>
+		</div>
 	</form>
-	<button onclick="location.href='/coomarket/member/loginForm.jeong'">로그인</button>
+	<div id="accountForm_buttonBox">
+		<button onclick="location.href='/coomarket/member/loginForm.jeong'">로그인</button>
+		<button onclick="location.href='/coomarket/display/main.jeong'">홈으로</button>
+	</div>
 </section>
 </body>
 </html>

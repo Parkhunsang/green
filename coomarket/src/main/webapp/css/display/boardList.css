@@ -1,0 +1,147 @@
+@charset "UTF-8";
+div#search_wrap{
+	width:1400px;
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    margin-top:80px;
+    margin-bottom: 20px;
+}
+div#serch_box_wrap{
+	position:relative;
+    left:0px;
+}
+div#search_wrap input{
+    width: 600px;
+    height: 48px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    padding: 0 10px;
+}
+div#search_wrap button{
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius:14px;
+    background: #2a3048;
+    color: #fff;
+    cursor: pointer;
+    position:absolute;
+    right:12px;
+    top:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+div#search_wrap button img{
+	width:14px;
+	height:14px;
+}
+section#category{
+	width:242px;
+	height:700px;
+	background:red;
+}
+div#board_list_wrap{
+	width:100%;
+	height:auto;	
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+div#board_list_inner_wrap{
+	width:1400px;
+	height:100%;
+	margin-top:20px;
+	padding: 0px 80px;
+	box-sizing:border-box;
+}
+div#nav_bar{
+	display:flex;
+	flex-direction:row;
+	gap:6px;
+}
+div#nav_bar p{
+	font:400 18px "pretendard";
+	color:#555d6d;
+}
+div#nav_bar a{
+	font:400 18px "pretendard";
+	color:#555d6d;
+}
+section#board_list_section{
+	width:100%;
+}
+div#board_list_section_inner{
+	display:flex;
+	flex-direction:row;
+	gap:20px;
+	margin-top:40px;
+}
+div.board_list_image_text_wrap img{
+	width:108px;
+	height:108px;
+	border-radius:20px;
+}
+ul#board_list{
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	gap:16px;
+}
+div.board_list_image_text_wrap{
+	
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
+}
+div.board_list_text_wrap{
+	gap:4px;
+	display:flex;
+	flex-direction:column;
+}
+div.board_date_view_wrap{
+	display:flex;
+	flex-direction:row;
+	gap:20px;
+}
+p.board_title{
+	font:500 20px "pretendard";
+}
+p.board_content{
+	font:400 16px "pretendard";
+	color:#555d6d;
+}
+p.board_date{
+	font:400 12px "pretendard";
+	color:#868b94;
+}
+p.board_view{
+	position:relative;
+	font:400 12px "pretendard";
+	color:#868b94;
+}
+p.board_view::after{
+	content: '';
+    width:12px;
+    height:8px;
+    background: url('/coomarket/css/img/view.png') no-repeat center;
+    background-size: cover;
+    display:block;
+    position: absolute;
+    left:-12px;
+    top:3px ;
+}
+
+div#number{
+	margin-top:36px;
+	display:flex;
+	justify-content:center;
+}
+div#number button{
+	background:none;
+	border:none;
+	cursor:pointer;
+	font:400 14px "pretendard";
+}

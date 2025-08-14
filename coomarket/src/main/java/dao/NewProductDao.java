@@ -31,6 +31,7 @@ public class NewProductDao {
 	public int insert(NewProduct newProduct) {
 		return session.insert("newProductns.insert", newProduct);
 	}
+	
 	public List<NewProduct> list(int startRow, int rowPerPage) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startRow", startRow);

@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.MemberDao;
+import dao.MemberPrivateDao;
 import model.Member;
+import model.MemberPrivate;
 import service.CommandProcess;
 
 public class Join implements CommandProcess {
@@ -18,35 +20,39 @@ public class Join implements CommandProcess {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		
 		Member member = new Member();
 		
-		String bizNum = request.getParameter("business_num");
-		String compName = request.getParameter("company_name");
-		String userTel = request.getParameter("userTel");
-		String bizAddr = request.getParameter("userAddr");
-		String bizEmail = request.getParameter("userEmail_biz");
 
 		String id = request.getParameter("userId");
 		String pw = request.getParameter("userPw");
 		String email = request.getParameter("userEmail_individual");
+		String memberType = "I";
+
+		int result = 0;
 
 		member.setId(id);
 		member.setPassword(pw);
 		member.setEmail(email);
-		
-		if(bizNum != null) {
-			
-		}else {
-			
-		}
+		member.setMemberType(memberType);
+
+		MemberDao memberDao = MemberDao.getInstance();
 		
 		
+		System.out.println(memberType);
+
+		result = memberDao.insert(member);
 		
-		int result = 0;
+//		if(result>0) {
+//			result = 0;
+//			MemberPrivate memberPrivate = new MemberPrivate();
+//			memberPrivate.setId(id);
+//			MemberPrivateDao memberPrivateDao = MemberPrivateDao.getInstance();
+//			result = memberPrivateDao.insert(memberPrivate);
+//		}
 		
-		MemberDao md = MemberDao.getInstance();
+//		if(result == 0) memberDao.insertCancel(member);
 		
-		result = md.insert(member);
 		request.setAttribute("result", result);
 		
 		return "/member/join";

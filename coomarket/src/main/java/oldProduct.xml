@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oldProductns">
+	<select id="serchList" parameterType="string" resultType="oldProduct">
+		select * from oldproduct where op_name like '%'||#{keyword}||'%'
+	</select>
+
+	<insert id="insert" parameterType="oldProduct">
+		<selectKey keyProperty="op_no" order="BEFORE" resultType="integer">
+			select nvl(max(np_no),0) + 1 from oldProduct
+		</selectKey>
+		insert into oldProduct values(	#{op_no}, #{op_name}, #{op_content}, #{op_image},#{op_price},#{op_discount},
+		sysdate,0,'s',"11111" #{oldCode})
+	</insert>
+	
+	<select id="list" parameterType="map" resultType="oldProduct" >
+		select * from oldProduct order by op_no desc offset #{startRow} rows fetch next #{rowPerPage} rows only
+	</select>
+	
+	<select id="cate_list" parameterType="map" resultType="oldProduct" >
+		select * from oldProduct where code=#{oldCode} order by op_no desc offset #{startRow} rows fetch next #{rowPerPage} rows only
+	</select>
+	
+	<select id="select" parameterType="integer" resultType="oldProduct">
+		select * from oldProduct where op_no=#{op_no} 
+	</select>
+	
+	<select id="total" resultType="integer">
+		select count(*) from oldProduct
+	</select>
+	
+	<update id="update" parameterType="oldProduct">
+		update oldproduct set np_name=#{np_name},np_content=#{np_content},np_price=#{np_price},np_discount=#{np_discount},
+			np_count=#{np_count},code=#{code}
+			<if test="op_image!=null and op_image!=''">
+				,op_image=#{op_image}
+			</if>
+			where op_no=#{op_no}
+	</update>
+</mapper>

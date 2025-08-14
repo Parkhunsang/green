@@ -11,13 +11,12 @@ public class JoinTypeAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		String type = request.getParameter("joinTypes");
 		
-		int result = 0;
 		if(type != null) {
-			if("individual".equals(type)) result=1;
-			else if("business".equals(type)) result=2;
+			if("individual".equals(type)) type="I";
+			else if("business".equals(type)) type="B";
 		}
 		
-		request.setAttribute("result", result);
+		request.setAttribute("type", type);
 		
 		return "/member/joinForm";
 	}

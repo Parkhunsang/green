@@ -14,7 +14,6 @@ public class BoardForm implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		if (id==null || id.equals("")) id = "test00"; 
 		request.setAttribute("id", id);
 		return "/board/boardForm";
 	}

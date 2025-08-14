@@ -2,19 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
-	<select id="select" parameterType="string" resultType="member">
+	<select id="select" parameterType="string" resultType="model.Member">
 		select * from member where id=#{id, jdbcType=VARCHAR}
 	</select>
-	<insert id="insert" parameterType="member">
-		insert into Member(id,password,name,address,tel,email,member_type)
+	<insert id="insert" parameterType="model.Member">
+		insert into Member(id,password,email,memberType,status)
 					values(
 						#{id, jdbcType=VARCHAR},
 						#{password, jdbcType=VARCHAR},
-						#{name, jdbcType=VARCHAR},
-						#{address, jdbcType=VARCHAR},
-						#{tel, jdbcType=VARCHAR},
 						#{email, jdbcType=VARCHAR},
-						'N'
+						#{memberType, jdbcType=CHAR},
+						'A'
 					)
 	</insert>
+	
+	
+	<select id="selectPrivate" parameterType="string" resultType="model.MemberPrivate">
+		select * from MemberPrivate where id=#{id, jdbcType=VARCHAR}
+	</select>	
+	
+	<select id="selectPrivateTel" parameterType="string" resultType="model.MemberPrivate">
+		select * from MemberPrivate where tel=#{tel, jdbcType=VARCHAR}
+	</select>	
+	
+	<insert id="insertPrivate" parameterType="model.MemberPrivate">
+		insert into MemberPrivate(id,tel,name)
+			values(
+				#{id, jdbcType=VARCHAR},
+				#{tel, jdbcType=VARCHAR},
+				#{name, jdbcType=VARCHAR}
+			)
+	</insert>
+	
+	<update id="addressUpdate" parameterType="model.MemberPrivate">
+		update MemberPrivate set address=#{address},addressDetail=#{addressDetail} where id=#{id}
+	</update>
+	
+	<delete id="insertCancel" parameterType="model.Member">
+		delete from Member where id=#{id}
+	</delete>
+
 </mapper>

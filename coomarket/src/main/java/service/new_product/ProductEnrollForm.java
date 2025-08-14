@@ -16,7 +16,7 @@ public class ProductEnrollForm implements CommandProcess {
 		CategoryDao cd = CategoryDao.getInstance();
 		List<Category> category_list = cd.list();
 		request.setAttribute("category_list", category_list);
-//		System.out.println(category_list.get(0).getCode());
+		System.out.println(category_list.get(0).getCode());
 		return "/new_product/new_product_enroll_form";
 	}
 

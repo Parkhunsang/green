@@ -8,9 +8,9 @@ public class MemberPrivate {
 	
     private String name;
     private String address;
-    private String address_detail;
+    private String addressDetail;
     private String tel;
-    private String member_pic;
+    private String memberPic;
     
     @OneToOne(mappedBy = "memberPrivate")
     private Member member;
@@ -34,11 +34,11 @@ public class MemberPrivate {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getAddress_detail() {
-		return address_detail;
+	public String getAddressDetail() {
+		return addressDetail;
 	}
-	public void setAddress_detail(String address_detail) {
-		this.address_detail = address_detail;
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
 	}
 	public String getTel() {
 		return tel;
@@ -46,10 +46,10 @@ public class MemberPrivate {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getMember_pic() {
-		return member_pic;
+	public String getMemberPic() {
+		return memberPic;
 	}
-	public void setMember_pic(String member_pic) {
-		this.member_pic = member_pic;
+	public void setMemberPic(String memberPic) {
+		this.memberPic = memberPic;
 	}
 }

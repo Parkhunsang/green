@@ -7,14 +7,16 @@
 <title>Insert title here</title>
 
 </head>
-
 <body>
+
 	<script type="text/javascript">
 	//	location.href="/coomarket/new_product/new_product_list.hun"
-	//	location.href="display/main.jeong"
-		location.href="coomarket/new_product/new_product_enroll_form.hun"
+		location.href="/coomarket/display/main.jeong"
+		//location.href="/coomarket/client/boardList.hun"
+	//	location.href="/coomarket/new_product/new_product_enrollForm.hun"
 	//location.href="/coomarket/board/boardWriteForm.hun"
 	//location.href="/coomarket/client/goodsList.hun"
 	</script>
+
 </body>
-</html>
+</html>	

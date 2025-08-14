@@ -19,7 +19,10 @@ ul,li{
   left:-9999px;
   top:0px;
 }
-
+a{
+    text-decoration:none;
+    color:black;
+}
 /*헤더*/
 header{
   width:100%;
@@ -40,17 +43,25 @@ header{
 }
 #headerLogo{
   width:100px;
-  height:40px;
+  height:100px;
   position:absolute;
   left:0;
   top:50%;
   transform:translateY(-50%);
   font-size:24px;
   line-height:40px;
+  display:block;
+  background:url('/coomarket/css/img/logo.png')no-repeat center;
+  background-size: cover;
+}
+#headerLogo a{
+	width:100%;
+	height:100%;
+	display:block;
 }
 #headerInner_top{
   width:100%;
-  height:80px;
+  height:100%;
 }
 /* #headerInner_menuBox{
   width:500px;
@@ -99,4 +110,167 @@ margin-left:10px;
 }
 #header_userBox_list>li:first-child{
   margin-left:0px;
+}
+
+/* 하단영역 */
+div#footer_wrap{
+    width:100%;
+    height:auto;
+    background: #fff;
+    padding: 20px 0px 20px;
+    box-sizing: border-box;
+    margin-top: 300px;
+    border-top: 1px solid #00000026;
+}
+footer{
+    width:100%;
+    height:100%;
+}
+div#footer_flex_wrap{
+    width:100%;
+    height:100%;
+    padding: 0px 240px;
+    box-sizing: border-box;
+}
+div#footer_info_wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+ul#footer_list{
+    width:700px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+ul#footer_list li{
+    height: 100%;
+}
+ul#footer_list li p{
+    font:500 14px "pretendard";
+    color: black;
+}
+ul.footer_sub_list{
+    width: 100%;
+    margin:0px 70px 0px 0px;
+}
+ul.footer_sub_list li{
+    margin-top: 12px;
+}
+ul.footer_sub_list li a{
+    font:400 12px "pretendard";
+    color: black;
+}
+div#newsletter_wrap{
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+div#newsletter{
+    width: 100%;
+    height: 208px;
+    
+}
+div#newsletter h2{
+    font: 400 14px "pretendard";
+    color: black;
+}
+div#newsletter>p{
+    font: 300 12px "pretendard";
+    color: black;
+    margin-top: 12px;
+}
+div#newsletter>a{
+    font: 400 12px "pretendard";
+    margin-top: 10px;
+    color: black;
+}
+div#input_email_wrap{
+    width: 100%;
+    height: 34px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+input[type="email"] {
+    width: 100%;
+    height: 100%;
+    border: none;  /* 기본 border 제거 */
+    border-bottom: solid 1px white;  /* 원하는 하단 테두리만 설정 */
+    background: none;
+    box-shadow: none;
+    outline: none;
+    appearance: none;  /* 브라우저 기본 스타일 초기화 */
+    -webkit-appearance: none;  /* Safari에서의 기본 스타일 초기화 */
+    -moz-appearance: none;  /* Firefox에서의 기본 스타일 초기화 */
+}
+input[type="email"]:focus {
+    box-shadow: none;
+    outline: none;
+}
+input[type="email"]::placeholder{
+    font: 400 14px "pretendard";
+    color: black;
+}
+input[type="email"]:focus::placeholder{
+    font: 400 14px "pretendard";
+    color: black;
+}
+div#sns_wrap{
+    width: 100%;
+    height: 37px;
+}
+ul#sns_list{
+    width:206px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0px 30px;
+}
+div#info_text_wrap{
+    width:100%;
+    height:auto;
+    margin-top: 12px;
+}
+div#info_text_wrap p{
+    font: 300 12px  "pretendard";
+    color: black;
+    line-height: 110%;
+}
+div#info_text_wrap a{
+    font: 300 14px  "pretendard";
+    color: black;
+}
+div#copyright_wrap{
+    width:100%;
+    height:40px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0px 240px;
+    box-sizing: border-box;
+    margin-top: 16px;
+    border-top: 1px solid #00000026;
+}
+ul#copyright_list{
+    width: 200px;
+    height: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+ul#copyright_list li a{
+    font: 400 12px "pretendard";
+    color:black;
+}
+div#copyright_wrap p{
+    font: 300 12px "pretendard";
+    color:black;
 }

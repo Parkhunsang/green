@@ -1,0 +1,52 @@
+#mypage{
+    max-width:700px;
+    border:solid 3px var(--main-color);
+    border-radius:8px;
+    margin:120px auto;
+    padding:30px;
+}
+#mypageTable{
+    min-width:500px;
+    margin:0px auto;
+    border-spacing:none;
+    border-collapse:none;
+}
+#mypageTable tr:first-child{
+    height:100px;
+}
+#mypageTable tr{
+    height:50px;
+}
+#mypageTable td{
+    width:75%;
+    padding:0px 10px;
+    box-sizing: border-box;
+}
+#mypageTable th{
+    width:25%;
+    padding:0px 10px;
+    box-sizing:border-box;
+    background:var(--main-color);
+}
+#mypageTable th:last-child{
+    background:none;
+}
+#mypage_submit{
+    width:70px;
+    height:30px;
+    border:none;
+    border-radius:4px;
+    background:var(--main-color);
+    color:#ffffff;
+}
+.address{
+    width:80%;
+}
+#gohome_btn{
+    border:solid 1px #000000;
+    border-radius:4px;
+    background:none;
+    outline:none;
+    float:right;
+    cursor:pointer;
+}

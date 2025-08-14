@@ -11,13 +11,21 @@ public class Member {
 	
     private String password;
     private String email;
-    private Date reg_date;
+    private Date regDate;
     private String status;
-    private String member_type;
+    private String memberType;
     
     @OneToOne
     @JoinColumn(name = "id")
     private MemberPrivate memberPrivate;
+    
+    @OneToOne
+    @JoinColumn(name = "id")
+    private MemberPrivate BusinessMember;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private MemberPrivate businessMemberPrivate;
     
 	public String getId() {
 		return id;
@@ -37,11 +45,11 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public String getStatus() {
 		return status;
@@ -49,11 +57,11 @@ public class Member {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getMember_type() {
-		return member_type;
+	public String getMemberType() {
+		return memberType;
 	}
-	public void setMember_type(String member_type) {
-		this.member_type = member_type;
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
 	}
 
 	

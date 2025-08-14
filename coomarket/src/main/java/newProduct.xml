@@ -13,9 +13,11 @@
 	<select id="list" parameterType="map" resultType="newProduct" >
 		select * from newProduct order by np_no desc offset #{startRow} rows fetch next #{rowPerPage} rows only
 	</select>
+	
 	<select id="cate_list" parameterType="map" resultType="newProduct" >
 		select * from newProduct where code=#{code} order by np_no desc offset #{startRow} rows fetch next #{rowPerPage} rows only
 	</select>
+	
 	<select id="select" parameterType="integer" resultType="newProduct">
 		select * from newProduct where np_no=#{np_no} 
 	</select>

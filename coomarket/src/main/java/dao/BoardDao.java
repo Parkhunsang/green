@@ -3,6 +3,9 @@ package dao;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -17,10 +20,9 @@ public class BoardDao {
 	public static BoardDao getInstance() {
 		return instance;		
 	}
-	// DataBase Connection Pool
-	private static SqlSession session; // mybatis 사용할 객체
-	static { // 초기화블럭 자바 5장 75page 멤버변수 초기화 방법
-		     // {}를 인스탄스 초기화블럭, static { } 클래스 변수 초기화 블럭
+	
+	private static SqlSession session;
+	static {
 		try {
 			Reader reader = Resources.getResourceAsReader("configuration.xml");
 			SqlSessionFactory ssf=new SqlSessionFactoryBuilder().build(reader);
@@ -37,12 +39,25 @@ public class BoardDao {
 		return (int) session.selectOne("boardns.getNumber");
 	}
 	
-	public int update(Board board) {
-		
-		return 0;
+	public List<Board> list(int startRow, int rowPerPage) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRow", startRow);
+		map.put("rowPerPage", rowPerPage);
+		return session.selectList("boardns.list", map);
 	}
+	
+	public int update(Board board) {
+		return session.update("boardns.update", board);
+	}
+	
 	public Board select(int b_no) {
 		return (Board) session.selectOne("boardns.select", b_no);
+	}
+	
+	
+	
+	public int total() {
+		return (int) session.selectOne("boardns.total");
 	}
 	
 	
